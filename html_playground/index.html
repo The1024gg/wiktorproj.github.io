@@ -4,6 +4,7 @@
     <h1>HTML Playground</h1>
     <p><small><a href="..\index.html">Back to Homepage...</a></small></p>
     <textarea id="code"></textarea>
+    <button id="run">Run!</button>
     <hr>
     <div id="output"></div>
 </body>
@@ -17,9 +18,9 @@
     }
 </style>
 <script>
-    setInterval(()=>{
+    document.getElementById('run').onclick = function() {
         document.getElementById("output").innerHTML = document.getElementById("code").value
-    },1000/40)
+    }​;​
 </script>
 </head>
 </html>
