@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>HTML Playground</h1>
+    <p><small><a href="..\index.html">Back to Homepage...</a></small></p>
+    <textarea id="code"></textarea>
+    <hr>
+    <div id="output"></div>
+</body>
+<head>
+    <title>
+        HTML Playground
+    </title>
+<style>
+    * {
+        font-family: Consolas;
+    }
+</style>
+<script>
+    setInterval(()=>{
+        document.getElementById("output").innerHTML = document.getElementById("code").value
+    },1000/40)
+</script>
+</head>
+</html>
