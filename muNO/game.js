@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
             (codePoint >= 0x1F00 && codePoint <= 0x1FFF)   // Greek Extended
         );
     }
-    
+
     class Card {
         constructor(color, value, isColorable) {
             this.color = color;
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initial draw
     playerHand.draw(7); // Draw initial hand of 7 cards
-    let auto = true
+    let auto = false
     setInterval(() => {
         if (auto) {
             let cardPlayed = false; // Flag to track if any card was played
