@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const CARD_VALUES = [...Array(10).keys()].map(String).concat(['Skip', 'Reverse', 'Draw Two', '-1']);
     const COLORABLE_CARDS = [true, true, true, true, true, true, true, true, true, true, true, true, true, false]; // Example array
 
-    let autoMode = false; // Boolean to toggle auto mode
+    let auto = false; // Boolean to toggle auto mode
 
     function isInteger(value) {
         const parsed = parseInt(value, 10); // Convert to integer
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initial draw
     playerHand.draw(7); // Draw initial hand of 7 cards
-    let auto = false
+
     setInterval(() => {
         if (auto) {
             let cardPlayed = false; // Flag to track if any card was played
