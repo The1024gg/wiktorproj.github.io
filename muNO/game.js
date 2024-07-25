@@ -48,9 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 this.cards.push(this.getRandomCard());
             }
             this.displayHand();
-            if (autoMode) {
-                this.autoPlay(); // Auto-play if auto mode is enabled
-            }
         }
 
         displayHand() {
@@ -76,9 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 this.moveToPlayedCard(card); // Move card to played area
                 this.cards.splice(index, 1);
                 this.displayHand();
-                if (autoMode) {
-                    this.autoPlay(); // Auto-play if auto mode is enabled
-                }
             } else {
                 console.log(`Card ${card.value} (${card.color}) cannot be played.`);
             }
