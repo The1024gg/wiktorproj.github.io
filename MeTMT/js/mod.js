@@ -19,7 +19,7 @@ let VERSION = {
 
 let changelog = `i'll just use the galaxy thing`
 
-let winText = `Wow! You won!`
+let winText = `Wow! You won! But there will be more <i>soon...</i>`
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
 // (The ones here are examples, all official functions are already taken care of)
