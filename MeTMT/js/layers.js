@@ -14,7 +14,7 @@ addLayer("+", {
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 2, // Prestige currency exponent
     tabFormat: {
-        "Progession": {
+        "Progression": {
             content: [
                 "main-display",
                 "prestige-button",
