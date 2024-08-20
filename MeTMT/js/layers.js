@@ -171,7 +171,7 @@ addLayer("p", {
         },
     },
     passiveGeneration() {
-        if (hasUpgrade('m',11)) return 1.5
+        if (hasUpgrade('m', 14)) return 1.5
         if (hasUpgrade('r', 15) && player['+'].points.gte(7)) return 0.05
         if (hasUpgrade('r', 15)) return 0.1
 	    return 0
