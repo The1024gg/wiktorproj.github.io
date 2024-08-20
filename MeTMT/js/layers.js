@@ -40,7 +40,7 @@ addLayer("+", {
                 ["display-text",
                     function() { if (player['+'].points.gte(8)) {return "- Mega layer, 2 upgrades for it"} },],
                 ["display-text",
-                    function() { if (player['+'].points.gte(9)) {return "- +1 Upgrades for mega layer"} },],
+                    function() { if (player['+'].points.gte(9)) {return "- +2 Upgrades for mega layer"} },],
             ],
         },
     },

@@ -65,7 +65,7 @@ var displayThings = [
 			"Addition layer", "Prestige layer, 1 upgrade for it", "+2 Upgrades for prestige layer", "+1 Upgrades for prestige layer",
 			"+3 Upgrades for prestige layer", "<span style='font-size: 75%'>Rebirth layer, 1 upgrade for it, a x2 point boost and +2 Upgrades for prestige layer</span>",
 			"+4 Upgrades for rebirth layer", "Nerf rebirth upgrade 15, and +4 Upgrades for rebirth layer", "Mega layer, 2 upgrades for it",
-			"+1 Upgrades for mega layer"
+			"+2 Upgrades for mega layer"
 		]
 		if (features[parseInt(player['+'].points.toStringWithDecimalPlaces(0))] == undefined) return 'Latest added feature: Nothing'
 		return 'Latest added feature: ' + features[parseInt(player['+'].points.toStringWithDecimalPlaces(0))]},
