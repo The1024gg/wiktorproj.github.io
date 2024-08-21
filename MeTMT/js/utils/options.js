@@ -51,6 +51,9 @@ function changeFormat() {
 			options.formatting = "infinity";
 			break;
 		case "infinity":
+			options.formatting = "exponent";
+			break;
+		case "exponent":
 			options.formatting = "default";
 			break;
 	}
@@ -63,8 +66,6 @@ function toggleAuto(toggle) {
 const MS_DISPLAYS = ["ALL", "LAST, AUTO, INCOMPLETE", "AUTOMATION, INCOMPLETE", "INCOMPLETE", "NONE"];
 
 const MS_SETTINGS = ["always", "last", "automation", "incomplete", "never"];
-
-const FORMATTINGS = ["default", "infinity"]
 
 function adjustMSDisp() {
 	options.msDisplay = MS_SETTINGS[(MS_SETTINGS.indexOf(options.msDisplay) + 1) % 5];
@@ -98,5 +99,7 @@ function format(decimal) {
 			return defaultFormat(decimal);
 		case "infinity":
 			return infFormat(decimal);
+		case "exponent":
+			return eFormat(decimal);
 	}
 }

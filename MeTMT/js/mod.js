@@ -13,14 +13,11 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.1.1",
-	name: "Prototyped, but better",
+	num: "0.1.2",
+	name: "Prototyped, but .2",
 }
 
-let changelog = `<h1>0.1.1 Prototyped, but better</h1><br><br>
-Fixed an issue with an upgrade<br><br>
-<h1>0.1 Prototyped</h1><br><br>
-First Release<br><br>`
+let changelog = `galaxy has a changelog you don't need this one!`
 
 let winText = `Wow! You won! But there will be more <i>soon...</i>`
 

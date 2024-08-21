@@ -44,6 +44,12 @@ function infFormat(decimal) {
     return "∞^(" + decimal.slog(new Decimal(2).pow(1024)) + ")"
 }
 
+function eFormat(decimal) {
+    decimal = new Decimal(decimal)
+    if (decimal.lt("1e1000")) return exponentialFormat(decimal, 2)
+    return "e"+eFormat(decimal.log10().floor())
+}
+
 function fixValue(x, y = 0) {
     return x || new Decimal(y)
 }
