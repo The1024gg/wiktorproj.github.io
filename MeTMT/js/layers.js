@@ -143,7 +143,7 @@ addLayer("a", {
         },
     },
     tabFormat: {
-        "Progression": {
+        "Achievements": {
             content: [
                 "achievements"
             ],
