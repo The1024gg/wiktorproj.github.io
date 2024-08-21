@@ -241,7 +241,7 @@ addLayer("r", {
             title: "Dynamic",
             description: "Multiply prestige point gain by points",
             effect() {
-                return player.p.points.add(1).pow(0.3)
+                return player.points.add(1).pow(0.3)
             },
             effectDisplay() {return 'x' + format(upgradeEffect(this.layer, this.id))},
             tooltip: "(points+1)<sup>0.3</sup>",
@@ -252,7 +252,7 @@ addLayer("r", {
             title: "Double dynamic",
             description: "Multiply prestige point gain by points, but reduced effect",
             effect() {
-                return player.p.points.add(1).pow(0.1)
+                return player.points.add(1).pow(0.1)
             },
             effectDisplay() {return 'x' + format(upgradeEffect(this.layer, this.id))},
             tooltip: "(points+1)<sup>0.1</sup>",
