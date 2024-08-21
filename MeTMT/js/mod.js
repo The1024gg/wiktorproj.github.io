@@ -13,8 +13,8 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.1.2",
-	name: "Prototyped, but .2",
+	num: "0.1.3",
+	name: "Prototyped achievements",
 }
 
 let changelog = `galaxy has a changelog you don't need this one!`

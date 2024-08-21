@@ -59,6 +59,100 @@ addLayer("+", {
     layerShown(){return true}
 })
 
+addLayer("a", {
+    name: "achievements", // This is optional, only used in a few places, If absent it just uses the layer id.
+    symbol: "A", // This appears on the layer's node. Default is the id with the first letter capitalized
+    position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
+    startData() { return {
+        unlocked: true,
+		points: new Decimal(0),
+    }},
+    color: "#FFFF00",
+    requires: new Decimal(80085), // Can be a function that takes requirement increases into account
+    tooltip: "Achievements",
+    resource: "achis", // Name of prestige currency
+    baseResource: "points", // Name of resource prestige is based on
+    baseAmount() {return player.points}, // Get the current amount of baseResource
+    type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+    exponent: 2, // Prestige currency exponent
+    achievements: {
+        11: {
+            name: "The first one's always free",
+            tooltip: "If you don't have this, you don't exist",
+            done() {return true}
+        },
+        12: {
+            name: "Gotta start somewhere",
+            tooltip: "Get 1 addition",
+            done() {return player['+'].points.gte(1)}
+        },
+        13: {
+            name: "A single upgrade?",
+            tooltip: "Get prestige upgrade 11",
+            done() {return hasUpgrade('p', 11)}
+        },
+        14: {
+            name: "DYNAMIC!!",
+            tooltip: "Get prestige upgrade 14",
+            done() {return hasUpgrade('p', 14)}
+        },
+        15: {
+            name: "That is long...",
+            tooltip: "Get 5 additions",
+            done() {return player['+'].points.gte(5)}
+        },
+        16: {
+            name: "META",
+            tooltip: "Get the first meta upgrade",
+            done() {return hasUpgrade('p', 21)}
+        },
+        17: {
+            name: "Rebirth!",
+            tooltip: "Rebirth for the first time",
+            done() {return player['r'].points.gte(1)} // ignore the lazy solution
+        },
+        18: {
+            name: "Automated",
+            tooltip: "Get rebirth upgrade 15",
+            done() {return hasUpgrade('r', 15)}
+        },
+        19: {
+            name: "What is a prestige reset?",
+            tooltip: "Get rebirth upgrade 16",
+            done() {return hasUpgrade('r', 16)}
+        },
+        21: {
+            name: "Very mega",
+            tooltip: "Mega for the first time",
+            done() {return player['m'].points.gte(1)} // ignore the lazy solution
+        },
+        22: {
+            name: "Silent rebirth",
+            tooltip: "Get mega upgrade 14",
+            done() {return hasUpgrade('m', 14)}
+        },
+        23: {
+            name: "v0.1.x complete",
+            tooltip: "Get 10 additions",
+            done() {return player['+'].points.gte(10)}
+        },
+        24: {
+            name: "You're still going?",
+            tooltip: "Get 15 additions",
+            done() {return player['+'].points.gte(15)}
+        },
+    },
+    tabFormat: {
+        "Progression": {
+            content: [
+                "achievements"
+            ],
+        },
+    },
+    row: 'side', // Row the layer is in on the tree (0 is the first row)
+    layerShown(){return true}
+})
+
 addLayer("p", {
     name: "prestige", // This is optional, only used in a few places, If absent it just uses the layer id.
     symbol: "P", // This appears on the layer's node. Default is the id with the first letter capitalized
