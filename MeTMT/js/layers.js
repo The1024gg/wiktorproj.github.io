@@ -181,6 +181,7 @@ addLayer("p", {
         if (hasUpgrade('p', 15)) mult = mult.times(upgradeEffect('p', 15))
         if (hasUpgrade('r', 12)) mult = mult.times(3)
         if (hasUpgrade('r', 13)) mult = mult.times(upgradeEffect('r', 13))
+        if (hasUpgrade('r', 14)) mult = mult.times(upgradeEffect('r', 14))
         if (hasUpgrade('r', 17)) mult = mult.pow(1.05)
         return mult
     },
