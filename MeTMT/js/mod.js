@@ -13,8 +13,8 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.2",
-	name: "QuadLayer",
+	num: "0.2.1",
+	name: "QuadLayer Tweak 1",
 }
 
 let changelog = `galaxy has a changelog you don't need this one!`

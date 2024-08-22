@@ -248,7 +248,7 @@ addLayer("p", {
         },
         21: {
             title: "META",
-            description: "2x addition gain",
+            description: "/2 addition req.",
             cost: new Decimal(2000),
             style: function(){
                     if (hasUpgrade(this.layer, this.id)) {
@@ -263,7 +263,7 @@ addLayer("p", {
             title: "Less META",
             description: function(){
                 if (hasUpgrade(this.layer, this.id)) {
-                    return "1.5x addition gain"
+                    return "/1.5 addition req."
                 } else {
                     return "???"
                 }
@@ -394,7 +394,7 @@ addLayer("r", {
         },
         21: {
             title: "META II",
-            description: "x5 addition gain",
+            description: "/5 addition req.",
             cost: new Decimal(35000),
             style: function(){
                 if (hasUpgrade(this.layer, this.id)) {
@@ -476,7 +476,7 @@ addLayer("m", {
         },
         13: {
             title: "Need to get that 10th addition!",
-            description: "x100 addition gain, and multiply points by mega points",
+            description: "/100 addition req., and multiply points by mega points",
             style: function(){
                 if (hasUpgrade(this.layer, this.id)) {
                     return {'background': 'linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,253,0,1) 14%, rgba(0,255,25,1) 28%, rgba(0,244,237,1) 47%, rgba(0,1,242,1) 61%, rgba(235,0,246,1) 79%, rgba(255,0,0,1) 100%)'}
