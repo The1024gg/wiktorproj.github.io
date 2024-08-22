@@ -13,8 +13,8 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.1.3",
-	name: "Prototyped achievements",
+	num: "0.2",
+	name: "QuadLayer",
 }
 
 let changelog = `galaxy has a changelog you don't need this one!`
@@ -50,6 +50,10 @@ function getPointGen() {
 	if (hasUpgrade('m', 11)) gain = gain.times(3)
 	if (hasUpgrade('m', 12)) gain = gain.pow(1.04)
 	if (hasUpgrade('m', 13)) gain = gain.times(upgradeEffect('m', 13))
+	if (hasUpgrade('m', 15)) gain = gain.times(15)
+	if (hasUpgrade('m', 16)) gain = gain.pow(1.02)
+	if (hasUpgrade('u', 11)) gain = gain.times(20)
+	if (player['+'].points.gte(12)) gain = gain.times(3)
 	return gain
 }
 
@@ -65,16 +69,17 @@ var displayThings = [
 			"Addition layer", "Prestige layer, 1 upgrade for it", "+2 Upgrades for prestige layer", "+1 Upgrades for prestige layer",
 			"+3 Upgrades for prestige layer", "<span style='font-size: 75%'>Rebirth layer, 1 upgrade for it, a x2 point boost and +2 Upgrades for prestige layer</span>",
 			"+4 Upgrades for rebirth layer", "Nerf rebirth upgrade 15, and +4 Upgrades for rebirth layer", "Mega layer, 2 upgrades for it",
-			"+2 Upgrades for mega layer"
+			"+2 Upgrades for mega layer", "+3 Upgrades for mega layer", "Ultra layer, 2 upgrades for it",
+			"x3 point gain"
 		]
 		if (features[parseInt(player['+'].points.toStringWithDecimalPlaces(0))] == undefined) return 'Latest added feature: Nothing'
 		return 'Latest added feature: ' + features[parseInt(player['+'].points.toStringWithDecimalPlaces(0))]},
-		"Endgame: 10 additions"
+		"Endgame: 13 additions"
 ]
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player['+'].points.gte(10)
+	return player['+'].points.gte(13)
 }
 
 

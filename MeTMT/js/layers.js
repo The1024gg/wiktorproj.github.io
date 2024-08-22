@@ -41,6 +41,10 @@ addLayer("+", {
                     function() { if (player['+'].points.gte(8)) {return "- Mega layer, 2 upgrades for it"} },],
                 ["display-text",
                     function() { if (player['+'].points.gte(9)) {return "- +2 Upgrades for mega layer"} },],
+                ["display-text",
+                    function() { if (player['+'].points.gte(10)) {return "- +3 Upgrades for mega layer"} },],
+                ["display-text",
+                    function() { if (player['+'].points.gte(11)) {return "- x3 point gain"} },],
             ],
         },
     },
@@ -50,6 +54,7 @@ addLayer("+", {
         if (hasUpgrade('p', 22)) mult = mult.div(1.5)
         if (hasUpgrade('r', 21)) mult = mult.div(5)
         if (hasUpgrade('m', 13)) mult = mult.div(100)
+        if (player['+'].points.gte(10)) mult = mult.times(5e20)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -140,6 +145,16 @@ addLayer("a", {
             name: "You're still going?",
             tooltip: "Get 15 additions",
             done() {return player['+'].points.gte(15)}
+        },
+        25: {
+            name: "Woah",
+            tooltip: "Ultra for the first time",
+            done() {return player['u'].points.gte(1)} // ignore the lazy solution
+        },
+        26: {
+            name: "The first milestone",
+            tooltip: "Get ultra milestone 0",
+            done() {return hasMilestone('u', 0)}
         },
     },
     tabFormat: {
@@ -417,6 +432,7 @@ addLayer("r", {
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
         if (hasUpgrade('m',11)) mult = mult.times(3)
+        if (hasUpgrade('m',17)) mult = mult.times(20)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -482,6 +498,92 @@ addLayer("m", {
             cost: new Decimal(30),
             unlocked() {return player['+'].points.gte(9)}
         },
+        15: {
+            title: "Boom!",
+            description: "x15 point gain",
+            cost: new Decimal(10000),
+            unlocked() {return player['+'].points.gte(10)}
+        },
+        16: {
+            title: "OP, but with a twist...",
+            description: "^1.02 point gain, but /15 mega gain",
+            cost: new Decimal(50000),
+            unlocked() {return player['+'].points.gte(10)}
+        },
+        17: {
+            title: "OH MY GOODNESS",
+            description: "x20 rebirth gain",
+            cost: new Decimal(1e8),
+            unlocked() {return player['+'].points.gte(10)}
+        },
+    },
+    gainMult() { // Calculate the multiplier for main currency from bonuses
+        mult = new Decimal(1)
+        if (hasUpgrade('m', 16)) mult = mult.div(15)
+        return mult
+    },
+    gainExp() { // Calculate the exponent on main currency from bonuses
+        return new Decimal(1)
+    },
+    automate() {
+        if (hasMilestone('u', 0)) {
+            buyUpgrade('m', 11)
+            buyUpgrade('m', 12)
+            buyUpgrade('m', 13)
+            buyUpgrade('m', 14)
+            buyUpgrade('m', 15)
+            buyUpgrade('m', 16)
+            buyUpgrade('m', 17)
+        }
+    },
+    row: 2, // Row the layer is in on the tree (0 is the first row)
+    hotkeys: [
+        {key: "m", description: "M: Reset for mega points", onPress(){if (canReset(this.layer)) doReset(this.layer)}, unlocked() {return player['+'].points.gte(8)}},
+    ],
+    layerShown(){return player['+'].points.gte(8)}
+})
+
+addLayer("u", {
+    name: "ultra", // This is optional, only used in a few places, If absent it just uses the layer id.
+    symbol: "U", // This appears on the layer's node. Default is the id with the first letter capitalized
+    position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
+    startData() { return {
+        unlocked: true,
+		points: new Decimal(0),
+    }},
+    branches: "m",
+    color: "#F0F",
+    requires: new Decimal(30e9), // Can be a function that takes requirement increases into account
+    resource: "ultra points", // Name of prestige currency
+    baseResource: "mega points", // Name of resource prestige is based on
+    baseAmount() {return player.m.points}, // Get the current amount of baseResource
+    type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+    exponent: 0.2, // Prestige currency exponent
+    milestones: {
+        0: {
+            requirementDescription: "5 ultra points",
+            effectDescription: "Automate mega upgrades!",
+            done() { return player.u.points.gte(5) }
+        }
+    },
+    upgrades: {
+        11: {
+            title: "Big boost",
+            description: "x20 point gain",
+            cost: new Decimal(1),
+            unlocked() {return player['+'].points.gte(11)}
+        },
+        12: {
+            title: "Scaling boost",
+            description: "Multiply point gain by rebirth points",
+            cost: new Decimal(3),
+            effect() {
+                return player.r.points.add(1).pow(0.06)
+            },
+            effectDisplay() {return 'x' + format(upgradeEffect(this.layer, this.id))},
+            tooltip: "(rebirthpoints+1)<sup>0.06</sup>",
+            unlocked() {return player['+'].points.gte(11)}
+        },
     },
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
@@ -490,9 +592,9 @@ addLayer("m", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
-    row: 2, // Row the layer is in on the tree (0 is the first row)
+    row: 3, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
-        {key: "m", description: "M: Reset for mega points", onPress(){if (canReset(this.layer)) doReset(this.layer)}, unlocked() {return player['+'].points.gte(8)}},
+        {key: "u", description: "U: Reset for ultra points", onPress(){if (canReset(this.layer)) doReset(this.layer)}, unlocked() {return player['+'].points.gte(11)}},
     ],
-    layerShown(){return player['+'].points.gte(8)}
+    layerShown(){return player['+'].points.gte(11)}
 })
