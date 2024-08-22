@@ -13,8 +13,8 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.2.1",
-	name: "QuadLayer Tweak 1",
+	num: "0.2.2",
+	name: "QuadLayer Tweak 2",
 }
 
 let changelog = `galaxy has a changelog you don't need this one!`
@@ -74,7 +74,49 @@ var displayThings = [
 		]
 		if (features[parseInt(player['+'].points.toStringWithDecimalPlaces(0))] == undefined) return 'Latest added feature: Nothing'
 		return 'Latest added feature: ' + features[parseInt(player['+'].points.toStringWithDecimalPlaces(0))]},
-		"Endgame: 13 additions"
+		"Endgame: 13 additions",
+	function() {
+		if (player.points.lte(100)) {
+			return "If 1 point is a centimeter, you'd have " + format(player.points) + "cm"
+		}
+		if (player.points.lte(100e3)) {
+			return "If 1 point is a centimeter, you'd have " + format(player.points.div(100)) + "m"
+		}
+		if (player.points.lte(29979245800)) {
+			return "If 1 point is a centimeter, you'd have " + format(player.points.div(100e3)) + "km"
+		}
+		if (player.points.lte(1798754748000)) {
+			return "If 1 point is a centimeter, you'd have " + format(player.points.div(29979245800)) + " light seconds"
+		}
+		if (player.points.lte(1798754748000*60)) {
+			return "If 1 point is a centimeter, you'd have " + format(player.points.div(1798754748000)) + " light minutes"
+		}
+		if (player.points.lte(1798754748000*60*24)) {
+			return "If 1 point is a centimeter, you'd have " + format(player.points.div(1798754748000*60)) + " light hours"
+		}
+		if (player.points.lte(7.10030834 * 1e15)) {
+			return "If 1 point is a second, you'd have " + format(player.points.div(1798754748000*60*24*365)) + " galactic years"
+		}
+		if (player.points.lte(1798754748000*60*24*365)) {
+			return "If 1 point is a centimeter, you'd have " + format(player.points.div(1798754748000*60*24)) + " light days"
+		}
+		if (player.points.lte(3.08567758e16)) {
+			return "If 1 point is a centimeter, you'd have " + format(player.points.div(1798754748000*60*24*365)) + " light years"
+		}
+		if (player.points.lte(3.08567758e19)) {
+			return "If 1 point is a centimeter, you'd have " + format(player.points.div(3.08567758e16)) + " parsecs"
+		}
+		if (player.points.lte(3.08567758e22)) {
+			return "If 1 point is a centimeter, you'd have " + format(player.points.div(3.08567758e19)) + " kiloparsecs"
+		}
+		if (player.points.lte(3.08567758e25)) {
+			return "If 1 point is a centimeter, you'd have " + format(player.points.div(3.08567758e22)) + " megaparsecs"
+		}
+		if (player.points.lte(3.08567758e28)) {
+			return "If 1 point is a centimeter, you'd have " + format(player.points.div(3.08567758e25)) + " gigaparsecs"
+		}
+		return "If you write 1 digit/s, you'd have to write for " + formatTime(player.points.log10().floor())
+	}
 ]
 
 // Determines when the game "ends"
