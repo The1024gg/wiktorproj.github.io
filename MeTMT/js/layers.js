@@ -156,6 +156,19 @@ addLayer("a", {
             tooltip: "Get ultra milestone 0",
             done() {return hasMilestone('u', 0)}
         },
+        27: {
+            name: "v0.2.x complete",
+            tooltip: "Get 13 additions",
+            done() {return player['+'].points.gte(13)}
+        },
+        28: {
+            name: "Why?",
+            tooltip: function() {
+                if (hasAchievement(this.layer, this.id)) return "Get 20 additions\nReward: 1.5x points"
+                return "Hint: it's something with the progression\nReward: 1.5x points"
+            },
+            done() {return player['+'].points.gte(20)}
+        },
     },
     tabFormat: {
         "Achievements": {

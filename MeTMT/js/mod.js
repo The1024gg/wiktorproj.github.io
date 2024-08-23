@@ -13,8 +13,8 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.2.2",
-	name: "QuadLayer Tweak 2",
+	num: "0.2.3",
+	name: "QuadLayer Tweak 3",
 }
 
 let changelog = `galaxy has a changelog you don't need this one!`
@@ -54,6 +54,7 @@ function getPointGen() {
 	if (hasUpgrade('m', 16)) gain = gain.pow(1.02)
 	if (hasUpgrade('u', 11)) gain = gain.times(20)
 	if (player['+'].points.gte(12)) gain = gain.times(3)
+	if (hasAchievement('a', 28)) gain = gain.times(1.5)
 	return gain
 }
 
