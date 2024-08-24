@@ -13,8 +13,8 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.2.3",
-	name: "QuadLayer Tweak 3",
+	num: "0.3",
+	name: "It's like an onion",
 }
 
 let changelog = `galaxy has a changelog you don't need this one!`
@@ -54,7 +54,8 @@ function getPointGen() {
 	if (hasUpgrade('m', 16)) gain = gain.pow(1.02)
 	if (hasUpgrade('u', 11)) gain = gain.times(20)
 	if (player['+'].points.gte(12)) gain = gain.times(3)
-	if (hasAchievement('a', 28)) gain = gain.times(1.5)
+	if (hasUpgrade('i', 11)) gain = gain.times(50)
+	if (hasUpgrade('i', 12)) gain = gain.times(20)
 	return gain
 }
 
@@ -71,11 +72,11 @@ var displayThings = [
 			"+3 Upgrades for prestige layer", "<span style='font-size: 75%'>Rebirth layer, 1 upgrade for it, a x2 point boost and +2 Upgrades for prestige layer</span>",
 			"+4 Upgrades for rebirth layer", "Nerf rebirth upgrade 15, and +4 Upgrades for rebirth layer", "Mega layer, 2 upgrades for it",
 			"+2 Upgrades for mega layer", "+3 Upgrades for mega layer", "Ultra layer, 2 upgrades for it",
-			"x3 point gain"
+			"x3 point gain", "Infinity layer, 4 upgrades for it"
 		]
 		if (features[parseInt(player['+'].points.toStringWithDecimalPlaces(0))] == undefined) return 'Latest added feature: Nothing'
 		return 'Latest added feature: ' + features[parseInt(player['+'].points.toStringWithDecimalPlaces(0))]},
-		"Endgame: 13 additions",
+		"Endgame: infinity upgrade 14",
 	function() {
 		if (player.points.lte(100)) {
 			return "If 1 point is a centimeter, you'd have " + format(player.points) + "cm"

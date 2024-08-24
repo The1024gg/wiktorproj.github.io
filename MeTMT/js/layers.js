@@ -45,6 +45,8 @@ addLayer("+", {
                     function() { if (player['+'].points.gte(10)) {return "- +3 Upgrades for mega layer"} },],
                 ["display-text",
                     function() { if (player['+'].points.gte(11)) {return "- x3 point gain"} },],
+                ["display-text",
+                    function() { if (player['+'].points.gte(19)) {return "- Infinity layer, 4 upgrades for it"} },],
             ],
         },
     },
@@ -55,6 +57,7 @@ addLayer("+", {
         if (hasUpgrade('r', 21)) mult = mult.div(5)
         if (hasUpgrade('m', 13)) mult = mult.div(100)
         if (player['+'].points.gte(10)) mult = mult.times(5e20)
+        if (player['+'].points.gte(14)) mult = mult.times(5e20)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -142,32 +145,29 @@ addLayer("a", {
             done() {return player['+'].points.gte(10)}
         },
         24: {
-            name: "You're still going?",
-            tooltip: "Get 15 additions",
-            done() {return player['+'].points.gte(15)}
-        },
-        25: {
             name: "Woah",
             tooltip: "Ultra for the first time",
             done() {return player['u'].points.gte(1)} // ignore the lazy solution
         },
-        26: {
+        25: {
             name: "The first milestone",
             tooltip: "Get ultra milestone 0",
             done() {return hasMilestone('u', 0)}
         },
-        27: {
+        26: {
             name: "v0.2.x complete",
             tooltip: "Get 13 additions",
             done() {return player['+'].points.gte(13)}
         },
+        27: {
+            name: "To infinity, and beyond!",
+            tooltip: "Get 1 infinity",
+            done() {return player['i'].points.gte(1)} // ignore the lazy solution
+        },
         28: {
-            name: "Why?",
-            tooltip: function() {
-                if (hasAchievement(this.layer, this.id)) return "Get 20 additions\nReward: 1.5x points"
-                return "Hint: it's something with the progression\nReward: 1.5x points"
-            },
-            done() {return player['+'].points.gte(20)}
+            name: "v0.3.x complete",
+            tooltip: "Get infinity upgrade 14",
+            done() {return hasUpgrade('i', 14)}
         },
     },
     tabFormat: {
@@ -305,6 +305,7 @@ addLayer("p", {
         if (hasUpgrade('r', 13)) mult = mult.times(upgradeEffect('r', 13))
         if (hasUpgrade('r', 14)) mult = mult.times(upgradeEffect('r', 14))
         if (hasUpgrade('r', 17)) mult = mult.pow(1.05)
+        if (hasUpgrade('i', 12)) mult = mult.times(10)
         return mult
     },
     automate() {
@@ -446,6 +447,7 @@ addLayer("r", {
         mult = new Decimal(1)
         if (hasUpgrade('m',11)) mult = mult.times(3)
         if (hasUpgrade('m',17)) mult = mult.times(20)
+        if (hasUpgrade('i', 12)) mult = mult.times(5)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -533,6 +535,7 @@ addLayer("m", {
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
         if (hasUpgrade('m', 16)) mult = mult.div(15)
+        if (hasUpgrade('i', 12)) mult = mult.times(2)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -548,6 +551,10 @@ addLayer("m", {
             buyUpgrade('m', 16)
             buyUpgrade('m', 17)
         }
+    },
+    passiveGeneration() {
+        if (hasUpgrade('i', 12)) return 0.25
+        return 0
     },
     row: 2, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
@@ -605,9 +612,69 @@ addLayer("u", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
+    passiveGeneration() {
+        if (hasUpgrade('i', 13)) return 0.05
+        return 0
+    },
     row: 3, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
         {key: "u", description: "U: Reset for ultra points", onPress(){if (canReset(this.layer)) doReset(this.layer)}, unlocked() {return player['+'].points.gte(11)}},
     ],
     layerShown(){return player['+'].points.gte(11)}
+})
+
+addLayer("i", {
+    name: "infinity", // This is optional, only used in a few places, If absent it just uses the layer id.
+    symbol: "I", // This appears on the layer's node. Default is the id with the first letter capitalized
+    position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
+    startData() { return {
+        unlocked: true,
+		points: new Decimal(0),
+    }},
+    branches: "u",
+    color: "#FFF",
+    requires: new Decimal(50), // Can be a function that takes requirement increases into account
+    resource: "infinities", // Name of prestige currency
+    baseResource: "ultra points", // Name of resource prestige is based on
+    baseAmount() {return player.u.points}, // Get the current amount of baseResource
+    type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+    exponent: 0.1, // Prestige currency exponent
+    upgrades: {
+        11: {
+            title: "The infinity",
+            description: "x50 point gain",
+            cost: new Decimal(1),
+            unlocked() {return player['+'].points.gte(19)}
+        },
+        12: {
+            title: "Multi-boost",
+            description: "x20 point gain, x10 prestige point gain, x5 rebirth point gain, x2 mega point gain, and you gain 25% mega points per second",
+            cost: new Decimal(3),
+            unlocked() {return player['+'].points.gte(19)}
+        },
+        13: {
+            title: ":)",
+            description: "Gain 5% of ultra points per second",
+            cost: new Decimal(5),
+            unlocked() {return player['+'].points.gte(19)}
+        },
+        14: {
+            title: "The final upgrade for v0.3",
+            description: "Nothing, just nothing",
+            cost: new Decimal(10),
+            unlocked() {return player['+'].points.gte(19)}
+        },
+    },
+    gainMult() { // Calculate the multiplier for main currency from bonuses
+        mult = new Decimal(1)
+        return mult
+    },
+    gainExp() { // Calculate the exponent on main currency from bonuses
+        return new Decimal(1)
+    },
+    row: 4, // Row the layer is in on the tree (0 is the first row)
+    hotkeys: [
+        {key: "i", description: "I: Reset for infinity points", onPress(){if (canReset(this.layer)) doReset(this.layer)}, unlocked() {return player['+'].points.gte(19)}},
+    ],
+    layerShown(){return player['+'].points.gte(19)}
 })
