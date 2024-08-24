@@ -123,7 +123,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player['+'].points.gte(13)
+	return hasUpgrade('i', 14)
 }
 
 
