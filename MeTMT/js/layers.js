@@ -57,7 +57,7 @@ addLayer("+", {
         if (hasUpgrade('r', 21)) mult = mult.div(5)
         if (hasUpgrade('m', 13)) mult = mult.div(100)
         if (player['+'].points.gte(10)) mult = mult.times(5e20)
-        if (player['+'].points.gte(14)) mult = mult.times(5e20)
+        if (player['+'].points.gte(14)) mult = mult.times(5e5)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
