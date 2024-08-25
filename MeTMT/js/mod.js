@@ -56,7 +56,7 @@ function getPointGen() {
 	if (player['+'].points.gte(12)) gain = gain.times(3)
 	if (hasUpgrade('i', 11)) gain = gain.times(50)
 	if (hasUpgrade('i', 12)) gain = gain.times(20)
-	gain = gain.times(new Decimal(1).mul(new Decimal(1).mul(x).pow(15).sub(1)).times(50).pow(0.9)).add(1) // it's jank but it works
+	if (getBuyableAmount('u',11).gte(1)) gain = gain.times(buyableEffect('u',11))
 	if (player['+'].points.gte(13)) gain = gain.times(1.5)
 	return gain
 }

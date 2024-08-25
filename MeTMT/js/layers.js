@@ -615,11 +615,14 @@ addLayer("u", {
         11: {
             cost(x) { return new Decimal(1).mul(x).pow(15) },
             title: "Ultra Buyable!",
-            display() { return "Amount: " +  format(getBuyableAmount(this.layer, this.id).floor()) + "\nCost: " + format(this.cost().floor()) + " ulra points\nEffect: x" + format(new Decimal(1).mul(this.cost().sub(1)).times(50).pow(0.9).add(1)) + " point gain"},
+            display() { return "Amount: " +  format(getBuyableAmount(this.layer, this.id).floor()) + "\nCost: " + format(this.cost().floor()) + " ulra points\nEffect: x" + format(this.effect()) + " point gain"},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            effect() {
+                return new Decimal(1).mul(this.cost().sub(1)).times(50).pow(0.9).add(1)
             },
             unlocked() {return player['+'].points.gte(12)}
         },
