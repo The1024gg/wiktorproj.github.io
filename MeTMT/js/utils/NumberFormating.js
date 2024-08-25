@@ -36,7 +36,7 @@ function infFormat(decimal) {
         return defaultFormat(decimal)
     }
     if (decimal.lt(new Decimal(2).pow(1024).pow(1e6))) {
-        return defaultFormat(decimal.div(new Decimal(2).pow(1024).pow(decimal.log(new Decimal(2).pow(1024)).floor()))) + "*(" + defaultFormat(decimal.log(new Decimal(2).pow(1024)).floor()) + ")∞"
+        return defaultFormat(decimal.div(new Decimal(2).pow(1024).pow(decimal.log(new Decimal(2).pow(1024)).floor()))) + "+(" + defaultFormat(decimal.log(new Decimal(2).pow(1024)).floor()) + ")∞"
     }
     if (decimal.lt(new Decimal(2).pow(1024).tetrate(10))) {
         return infFormat(decimal.log(new Decimal(2).pow(1024)).floor()) + "∞"
@@ -94,8 +94,8 @@ function defaultFormat(decimal, precision = 2, small) {
 
 function formatWhole(decimal) {
     decimal = new Decimal(decimal)
-    if (decimal.gte(1e9)) return defaultFormat(decimal, 2)
-    if (decimal.lte(0.99) && !decimal.eq(0)) return defaultFormat(decimal, 2)
+    if (decimal.gte(1e9)) return format(decimal, 2)
+    if (decimal.lte(0.99) && !decimal.eq(0)) return format(decimal, 2)
     return defaultFormat(decimal, 0)
 }
 
@@ -118,7 +118,7 @@ function toPlaces(x, precision, maxAccepted) {
 
 // Will also display very small numbers
 function formatSmall(x, precision=2) { 
-    return defaultFormat(x, precision, true)    
+    return format(x, precision, true)    
 }
 
 function invertOOM(x){

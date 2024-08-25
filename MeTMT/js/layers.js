@@ -46,6 +46,12 @@ addLayer("+", {
                 ["display-text",
                     function() { if (player['+'].points.gte(11)) {return "- x3 point gain"} },],
                 ["display-text",
+                    function() { if (player['+'].points.gte(12)) {return "- Ultra Buyable"} },],
+                ["display-text",
+                    function() { if (player['+'].points.gte(13)) {return "- x1.5 point gain"} },],
+                ["display-text",
+                    function() { if (player['+'].points.gte(14)) {return "- Gain 1% of ultra points/s"} },],
+                ["display-text",
                     function() { if (player['+'].points.gte(19)) {return "- Infinity layer, 4 upgrades for it"} },],
             ],
         },
@@ -605,6 +611,19 @@ addLayer("u", {
             unlocked() {return player['+'].points.gte(11)}
         },
     },
+    buyables: {
+        11: {
+            cost(x) { return new Decimal(1).mul(x).pow(15) },
+            title: "Ultra Buyable!",
+            display() { return "Amount: " +  format(getBuyableAmount(this.layer, this.id).floor()) + "\nCost: " + format(this.cost().floor()) + " ulra points\nEffect: x" + format(new Decimal(1).mul(this.cost().sub(1)).times(50).pow(0.9).add(1)) + " point gain"},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            unlocked() {return player['+'].points.gte(12)}
+        },
+    },
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
         return mult
@@ -614,6 +633,7 @@ addLayer("u", {
     },
     passiveGeneration() {
         if (hasUpgrade('i', 13)) return 0.05
+        if (player['+'].points.gte(14)) return 0.01
         return 0
     },
     row: 3, // Row the layer is in on the tree (0 is the first row)
@@ -625,7 +645,7 @@ addLayer("u", {
 
 addLayer("i", {
     name: "infinity", // This is optional, only used in a few places, If absent it just uses the layer id.
-    symbol: "I", // This appears on the layer's node. Default is the id with the first letter capitalized
+    symbol: "∞", // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,

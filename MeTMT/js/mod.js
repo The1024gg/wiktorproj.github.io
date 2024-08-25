@@ -13,8 +13,8 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.3",
-	name: "It's like an onion",
+	num: "0.3½",
+	name: "It's like 1.5 onions",
 }
 
 let changelog = `galaxy has a changelog you don't need this one!`
@@ -56,6 +56,8 @@ function getPointGen() {
 	if (player['+'].points.gte(12)) gain = gain.times(3)
 	if (hasUpgrade('i', 11)) gain = gain.times(50)
 	if (hasUpgrade('i', 12)) gain = gain.times(20)
+	gain = gain.times(new Decimal(1).mul(new Decimal(1).mul(x).pow(15).sub(1)).times(50).pow(0.9)).add(1) // it's jank but it works
+	if (player['+'].points.gte(13)) gain = gain.times(1.5)
 	return gain
 }
 
@@ -72,7 +74,7 @@ var displayThings = [
 			"+3 Upgrades for prestige layer", "<span style='font-size: 75%'>Rebirth layer, 1 upgrade for it, a x2 point boost and +2 Upgrades for prestige layer</span>",
 			"+4 Upgrades for rebirth layer", "Nerf rebirth upgrade 15, and +4 Upgrades for rebirth layer", "Mega layer, 2 upgrades for it",
 			"+2 Upgrades for mega layer", "+3 Upgrades for mega layer", "Ultra layer, 2 upgrades for it",
-			"x3 point gain", "Infinity layer, 4 upgrades for it"
+			"x3 point gain", "Ultra Buyable", "x1.5 point gain", "Gain 1% of ultra points/s", undefined, undefined, undefined, undefined, "Infinity layer, 4 upgrades for it"
 		]
 		if (features[parseInt(player['+'].points.toStringWithDecimalPlaces(0))] == undefined) return 'Latest added feature: Nothing'
 		return 'Latest added feature: ' + features[parseInt(player['+'].points.toStringWithDecimalPlaces(0))]},
