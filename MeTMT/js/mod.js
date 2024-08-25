@@ -68,17 +68,7 @@ function addedPlayerData() { return {
 // Display extra things at the top of the page
 var displayThings = [
 	function() {return 'You have ' + format(player['+'].points, 0) + ' additions'},
-	function() {
-		features = [
-			"Addition layer", "Prestige layer, 1 upgrade for it", "+2 Upgrades for prestige layer", "+1 Upgrades for prestige layer",
-			"+3 Upgrades for prestige layer", "<span style='font-size: 75%'>Rebirth layer, 1 upgrade for it, a x2 point boost and +2 Upgrades for prestige layer</span>",
-			"+4 Upgrades for rebirth layer", "Nerf rebirth upgrade 15, and +4 Upgrades for rebirth layer", "Mega layer, 2 upgrades for it",
-			"+2 Upgrades for mega layer", "+3 Upgrades for mega layer", "Ultra layer, 2 upgrades for it",
-			"x3 point gain", "Ultra Buyable", "x1.5 point gain", "Gain 1% of ultra points/s", undefined, undefined, undefined, undefined, "Infinity layer, 4 upgrades for it"
-		]
-		if (features[parseInt(player['+'].points.toStringWithDecimalPlaces(0))] == undefined) return 'Latest added feature: Nothing'
-		return 'Latest added feature: ' + features[parseInt(player['+'].points.toStringWithDecimalPlaces(0))]},
-		"Endgame: infinity upgrade 14",
+	"Endgame: infinity upgrade 14",
 	function() {
 		if (player.points.lte(100)) {
 			return "If 1 point is a centimeter, you'd have " + format(player.points) + "cm"
