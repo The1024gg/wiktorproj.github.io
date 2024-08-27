@@ -44,7 +44,7 @@ addLayer("+", {
                 ["display-text",
                     function() { if (player['+'].points.gte(10)) {return "- +3 Upgrades for mega layer"} },],
                 ["display-text",
-                    function() { if (player['+'].points.gte(11)) {return "- x3 point gain"} },],
+                    function() { if (player['+'].points.gte(11)) {return "- Ultra layer, 2 Upgrades for it, 1 Milestone for it, x3 point gain"} },],
                 ["display-text",
                     function() { if (player['+'].points.gte(12)) {return "- Ultra Buyable"} },],
                 ["display-text",
