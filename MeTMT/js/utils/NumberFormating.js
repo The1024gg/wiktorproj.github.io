@@ -129,3 +129,7 @@ function invertOOM(x){
 
     return x
 }
+
+setInterval(function() {
+    document.getElementById("tout").innerHTML = format(document.getElementById("tester").value)
+})
