@@ -4,12 +4,12 @@ Let's make a game!
     desc:A game about math
     
 Buttons
-    *main
+    *mainButton
         name:Number
         desc:Click this to increase your number!
         on click:yield 1 number
 
 Resources
-    *fuel
+    *number
         name:Number
         desc:Your number
