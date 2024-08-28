@@ -2,12 +2,18 @@ Let's make a game!
     name:MathGame
     author:WIY/Unicodes
     desc:A game about math
-    
+
+Settings
+    tiling background:plus.png
+
 Buttons
     *mainButton
         name:Number
         desc:Click this to increase your number!
         on click:yield 1 number
+        on click:anim icon wobble
+        icon:plus.png
+        class:bigButton hasFlares
 
 Resources
     *number
