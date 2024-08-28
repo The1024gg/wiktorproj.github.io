@@ -25,3 +25,8 @@ Buildings
         desc:+1/s
         on tick:yield 1 number
         cost:30 number
+    *adder
+        name:Adder
+        desc:+5/s
+        on tick:yield 5 number
+        cost:150 number
