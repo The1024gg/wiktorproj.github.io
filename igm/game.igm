@@ -30,3 +30,11 @@ Buildings
         desc:+5/s
         on tick:yield 5 number
         cost:150 number
+
+Upgrade
+    *parsley
+		name:Effect
+		desc:+1 adder effect
+		cost:2000 number
+		passive:increase number yield of adder by 1
+		req:500 number:earned
