@@ -1,0 +1,15 @@
+Let's make a game!
+    name:MathGame
+    author:WIY/Unicodes
+    desc:A game about math
+    
+Buttons
+    *main
+        name:Number
+        desc:Click this to increase your number!
+        on click:yield 1 number
+
+Resources
+    *fuel
+        name:Number
+        desc:Your number
