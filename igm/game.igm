@@ -18,3 +18,10 @@ Resources
     *number
         name:Number
         desc:Your number
+
+Buildings
+    *successor
+        name:Successor
+        desc:+1/s
+        on tick:yield 1 number
+        cost:30 number
