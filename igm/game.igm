@@ -4,7 +4,7 @@ Let's make a game!
     desc:A game about math
 
 Settings
-    tiling background:plus.png
+    tiling background:https://wiktorproj.github.io/igm/plus.png
 
 Buttons
     *mainButton
@@ -12,7 +12,7 @@ Buttons
         desc:Click this to increase your number!
         on click:yield 1 number
         on click:anim icon wobble
-        icon:plus.png
+        icon:https://wiktorproj.github.io/igm/plus.png
         class:bigButton hasFlares
 
 Resources
