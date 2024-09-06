@@ -58,7 +58,7 @@ addLayer("+", {
                 ["display-text",
                     function() { if (player['+'].points.gte(17)) {return "- Add a number to the base <span style=\"color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;\">point</span> gain based off of <span style=\"color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;\">points</span> (Currently: <h3 style=\"color: rgb(255,255,255); text-shadow: rgb(255,255,255) 0px 0px 10px;\">+" + format(player.points.pow(0.025)) + "</h3>)"} },],
                 ["display-text",
-                    function() { if (player['+'].points.gte(18)) {return "- Gain <h3 style=\"color: rgb(0,255,0); text-shadow: rgb(0,255,0) 0px 0px 10px;\">" + format(player['p'].points.pow(0.0075).log(2)) + "%</h3> ultra points per second"} },],
+                    function() { if (player['+'].points.gte(18)) {return "- Gain <h3 style=\"color: rgb(0,255,0); text-shadow: rgb(0,255,0) 0px 0px 10px;\">" + format(player['p'].points.pow(0.0075).add(1).log(2)) + "%</h3> ultra points per second"} },],
                 ["display-text",
                     function() { if (player['+'].points.gte(19)) {return "- <span style=\"color: rgb(119, 119, 119); text-shadow: rgb(119, 119, 119) 0px 0px 10px;\">Infinity</span> layer, 4 upgrades for it"} },],
                 ["display-text",
@@ -653,7 +653,7 @@ addLayer("u", {
         return new Decimal(1)
     },
     passiveGeneration() {
-        if (player['+'].points.gte(18)) return player.points.pow(0.0075).log(2)
+        if (player['+'].points.gte(18)) return player.points.pow(0.0075).add(1).log(2)
         if (player['+'].points.gte(14)) return 0.01
         return 0
     },
