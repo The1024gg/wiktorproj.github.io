@@ -158,7 +158,7 @@ var systemComponents = {
                 <td><button class="opt" onclick="save()">Save</button></td>
                 <td><button class="opt" onclick="toggleOpt('autosave')">Autosave: {{ options.autosave?"ON":"OFF" }}</button></td>
                 <td><button class="opt" style="color: red;" onclick="hardReset()">HARD RESET</button></td>
-				<td><button class="opt" onclick="softReset()">Soft Reset</button></td>
+				<td><button class="opt" onclick="player.points = new Decimal(0)">Soft Reset</button></td>
             </tr>
             <tr>
                 <td><button class="opt" onclick="exportSave()">Export to clipboard</button></td>
