@@ -658,7 +658,7 @@ addLayer("u", {
         return 0
     },
     automate() {
-        if (tmp['u'].buyables[11].canAfford) {
+        if (tmp['u'].buyables[11].canAfford && hasUpgrade("u", 13)) {
             addBuyables('u', 11, 1)
         }
     },
