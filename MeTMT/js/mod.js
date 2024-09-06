@@ -13,8 +13,8 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.3½.1",
-	name: "It's like 1.5 onions Tweak 1",
+	num: "0.4",
+	name: "NoGap",
 }
 
 let changelog = `galaxy has a changelog you don't need this one!`
@@ -38,6 +38,7 @@ function canGenPoints(){
 function getPointGen() {
 	if(!canGenPoints()) return new Decimal(0)
 	let gain = new Decimal(1)
+	if (player['+'].points.gte(17)) gain = gain.add(player.points.pow(0.025))
 	if (player['+'].points.gte(5)) gain = gain.times(2)
 	if (hasUpgrade('p', 13)) gain = gain.add(1)
 	if (hasUpgrade('p', 11)) gain = gain.times(2)
@@ -58,6 +59,7 @@ function getPointGen() {
 	if (hasUpgrade('i', 12)) gain = gain.times(20)
 	if (getBuyableAmount('u',11).gte(1)) gain = gain.times(buyableEffect('u',11))
 	if (player['+'].points.gte(13)) gain = gain.times(1.5)
+	if (player['+'].points.gte(16)) gain = gain.times(player['+'].points.pow(1.1))
 	return gain
 }
 

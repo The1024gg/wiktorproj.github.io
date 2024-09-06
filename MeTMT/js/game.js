@@ -391,6 +391,11 @@ function hardReset(resetOptions) {
 	window.location.reload();
 }
 
+function softReset() {
+	if (!confirm("Are you sure you want to do this? You will lose all your points!")) return
+	player.points = new Decimal(0)
+}
+
 var ticking = false
 
 var interval = setInterval(function() {

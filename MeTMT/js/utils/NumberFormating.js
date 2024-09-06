@@ -131,5 +131,7 @@ function invertOOM(x){
 }
 
 setInterval(function() {
-    document.getElementById("tout").innerHTML = format(document.getElementById("tester").value)
+    if (document.getElementById("tout") != undefined) {
+        document.getElementById("tout").innerHTML = format(document.getElementById("tester").value)
+    }
 })

@@ -14,7 +14,8 @@ function getStartOptions() {
 		forceOneTab: false,
 		oldStyle: false,
 		tooltipForcing: true,
-		formatting: "default"
+		formatting: "default",
+		addictionMode: false
 	}
 }
 

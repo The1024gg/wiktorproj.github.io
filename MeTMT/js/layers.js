@@ -8,7 +8,7 @@ addLayer("+", {
     }},
     color: "#5F6F7F",
     requires: new Decimal(15), // Can be a function that takes requirement increases into account
-    resource: "additions", // Name of prestige currency
+    resource: function() { return options.addictionMode ? "addictions" : "additions"}, // Name of prestige currency
     baseResource: "points", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
@@ -22,37 +22,48 @@ addLayer("+", {
                 ["display-text",
                     function() { return "Features:" },],
                 ["display-text",
-                    function() { if (player['+'].points.gte(0)) {return "- Addition layer"} },],
+                    function() { if (player['+'].points.gte(0)) {return "- <span style=\"color: rgb(95, 111, 127); text-shadow: rgb(95, 111, 127) 0px 0px 10px;\">Addition</span> layer"} },],
                 ["display-text",
-                    function() { if (player['+'].points.gte(1)) {return "- Prestige layer, 1 upgrade for it"} },],
+                    function() { if (player['+'].points.gte(1)) {return "- <span style=\"color: rgb(0, 255, 0); text-shadow: rgb(0, 255, 0) 0px 0px 10px;\">Prestige</span> layer, 1 upgrade for it"} },],
                 ["display-text",
-                    function() { if (player['+'].points.gte(2)) {return "- +2 Upgrades for prestige layer"} },],
+                    function() { if (player['+'].points.gte(2)) {return "- +2 Upgrades for <span style=\"color: rgb(0, 255, 0); text-shadow: rgb(0, 255, 0) 0px 0px 10px;\">prestige</span> layer"} },],
                 ["display-text",
-                    function() { if (player['+'].points.gte(3)) {return "- +1 Upgrades for prestige layer"} },],
+                    function() { if (player['+'].points.gte(3)) {return "- +1 Upgrades for <span style=\"color: rgb(0, 255, 0); text-shadow: rgb(0, 255, 0) 0px 0px 10px;\">prestige</span> layer"} },],
                 ["display-text",
-                    function() { if (player['+'].points.gte(4)) {return "- +3 Upgrades for prestige layer"} },],
+                    function() { if (player['+'].points.gte(4)) {return "- +3 Upgrades for <span style=\"color: rgb(0, 255, 0); text-shadow: rgb(0, 255, 0) 0px 0px 10px;\">prestige</span> layer"} },],
                 ["display-text",
-                    function() { if (player['+'].points.gte(5)) {return "- Rebirth layer, 1 upgrade for it, a x2 point boost and +2 Upgrades for prestige layer"} },],
+                    function() { if (player['+'].points.gte(5)) {return "- <span style=\"color: rgb(0, 119, 255); text-shadow: rgb(0, 119, 255) 0px 0px 10px;\">Rebirth</span> layer, 1 upgrade for it, a x2 <span style=\"color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;\">point</span> boost and +2 Upgrades for <span style=\"color: rgb(0, 255, 0); text-shadow: rgb(0, 255, 0) 0px 0px 10px;\">prestige</span> layer"} },],
                 ["display-text",
-                    function() { if (player['+'].points.gte(6)) {return "- +4 Upgrades for rebirth layer"} },],
+                    function() { if (player['+'].points.gte(6)) {return "- +4 Upgrades for <span style=\"color: rgb(0, 119, 255); text-shadow: rgb(0, 119, 255) 0px 0px 10px;\">rebirth</span> layer"} },],
                 ["display-text",
-                    function() { if (player['+'].points.gte(7)) {return "- Nerf rebirth upgrade 15, and +4 Upgrades for rebirth layer"} },],
+                    function() { if (player['+'].points.gte(7)) {return "- Nerf <span style=\"color: rgb(0, 119, 255); text-shadow: rgb(0, 119, 255) 0px 0px 10px;\">rebirth</span> upgrade 15, and +4 Upgrades for <span style=\"color: rgb(0, 119, 255); text-shadow: rgb(0, 119, 255) 0px 0px 10px;\">rebirth</span> layer"} },],
                 ["display-text",
-                    function() { if (player['+'].points.gte(8)) {return "- Mega layer, 2 upgrades for it"} },],
+                    function() { if (player['+'].points.gte(8)) {return "- <span style=\"color: rgb(255, 119, 0); text-shadow: rgb(255, 119, 0) 0px 0px 10px;\">Mega</span> layer, 2 upgrades for it"} },],
                 ["display-text",
-                    function() { if (player['+'].points.gte(9)) {return "- +2 Upgrades for mega layer"} },],
+                    function() { if (player['+'].points.gte(9)) {return "- +2 Upgrades for <span style=\"color: rgb(255, 119, 0); text-shadow: rgb(255, 119, 0) 0px 0px 10px;\">mega</span> layer"} },],
                 ["display-text",
-                    function() { if (player['+'].points.gte(10)) {return "- +3 Upgrades for mega layer"} },],
+                    function() { if (player['+'].points.gte(10)) {return "- +3 Upgrades for <span style=\"color: rgb(255, 119, 0); text-shadow: rgb(255, 119, 0) 0px 0px 10px;\">mega</span> layer"} },],
                 ["display-text",
-                    function() { if (player['+'].points.gte(11)) {return "- Ultra layer, 2 Upgrades for it, 1 Milestone for it, x3 point gain"} },],
+                    function() { if (player['+'].points.gte(11)) {return "- <span style=\"color: rgb(255, 0, 255); text-shadow: rgb(255, 0, 255) 0px 0px 10px;\">Ultra</span> layer, 2 Upgrades for it, 1 Milestone for it, x3 <span style=\"color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;\">point</span> gain"} },],
                 ["display-text",
-                    function() { if (player['+'].points.gte(12)) {return "- Ultra Buyable"} },],
+                    function() { if (player['+'].points.gte(12)) {return "- <span style=\"color: rgb(255, 0, 255); text-shadow: rgb(255, 0, 255) 0px 0px 10px;\">Ultra</span> Buyable"} },],
                 ["display-text",
-                    function() { if (player['+'].points.gte(13)) {return "- x1.5 point gain"} },],
+                    function() { if (player['+'].points.gte(13)) {return "- x1.5 <span style=\"color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;\">point</span> gain"} },],
                 ["display-text",
-                    function() { if (player['+'].points.gte(14)) {return "- Gain 1% of ultra points/s"} },],
+                    function() { if (player['+'].points.gte(14)) {return "- Gain 1% of <span style=\"color: rgb(255, 0, 255); text-shadow: rgb(255, 0, 255) 0px 0px 10px;\">ultra</span> points/s"} },],
                 ["display-text",
-                    function() { if (player['+'].points.gte(19)) {return "- Infinity layer, 4 upgrades for it"} },],
+                    function() { if (player['+'].points.gte(15)) {return "- +1 Upgrade for <span style=\"color: rgb(255, 0, 255); text-shadow: rgb(255, 0, 255) 0px 0px 10px;\">ultra</span> layer"} },],
+                ["display-text",
+                    function() { if (player['+'].points.gte(16)) {return "- Multiply <span style=\"color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;\">point</span> gain by additions (Currently: <h3 style=\"color: rgb(95, 111, 127); text-shadow: rgb(95, 111, 127) 0px 0px 10px;\">x" + format(player['+'].points.pow(1.1)) + "</h3>)"} },],
+                ["display-text",
+                    function() { if (player['+'].points.gte(17)) {return "- Add a number to the base <span style=\"color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;\">point</span> gain based off of <span style=\"color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;\">points</span> (Currently: <h3 style=\"color: rgb(255,255,255); text-shadow: rgb(255,255,255) 0px 0px 10px;\">+" + format(player.points.pow(0.025)) + "</h3>)"} },],
+                ["display-text",
+                    function() { if (player['+'].points.gte(18)) {return "- Gain <h3 style=\"color: rgb(0,255,0); text-shadow: rgb(0,255,0) 0px 0px 10px;\">" + format(player['p'].points.pow(0.0075).log(2)) + "%</h3> ultra points per second"} },],
+                ["display-text",
+                    function() { if (player['+'].points.gte(19)) {return "- <span style=\"color: rgb(119, 119, 119); text-shadow: rgb(119, 119, 119) 0px 0px 10px;\">Infinity</span> layer, 4 upgrades for it"} },],
+                ["display-text",
+                    "<br><br>Please like this game the colors took so long ;-;"
+                ]
             ],
         },
     },
@@ -87,7 +98,7 @@ addLayer("a", {
     resource: "achis", // Name of prestige currency
     baseResource: "points", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
-    type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+    type: "none", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 2, // Prestige currency exponent
     achievements: {
         11: {
@@ -171,7 +182,7 @@ addLayer("a", {
             done() {return player['i'].points.gte(1)} // ignore the lazy solution
         },
         28: {
-            name: "v0.3.x complete",
+            name: "v0.3.x & v0.4.x complete",
             tooltip: "Get infinity upgrade 14",
             done() {return hasUpgrade('i', 14)}
         },
@@ -610,6 +621,12 @@ addLayer("u", {
             tooltip: "(rebirthpoints+1)<sup>0.06</sup>",
             unlocked() {return player['+'].points.gte(11)}
         },
+        13: {
+            title: "Oh, already?",
+            description: "Autobuy the ultra buyable",
+            cost: new Decimal(100000),
+            unlocked() {return player['+'].points.gte(15)}
+        },
     },
     buyables: {
         11: {
@@ -629,15 +646,21 @@ addLayer("u", {
     },
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
+        if (hasUpgrade('i', 13)) mult = mult.times(2)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
     passiveGeneration() {
-        if (hasUpgrade('i', 13)) return 0.05
+        if (player['+'].points.gte(18)) return player.points.pow(0.0075).log(2)
         if (player['+'].points.gte(14)) return 0.01
         return 0
+    },
+    automate() {
+        if (tmp['u'].buyables[11].canAfford) {
+            addBuyables('u', 11, 1)
+        }
     },
     row: 3, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
@@ -655,7 +678,7 @@ addLayer("i", {
 		points: new Decimal(0),
     }},
     branches: "u",
-    color: "#FFF",
+    color: "#777",
     requires: new Decimal(50), // Can be a function that takes requirement increases into account
     resource: "infinities", // Name of prestige currency
     baseResource: "ultra points", // Name of resource prestige is based on
@@ -677,7 +700,7 @@ addLayer("i", {
         },
         13: {
             title: ":)",
-            description: "Gain 5% of ultra points per second",
+            description: "x2 point gain",
             cost: new Decimal(5),
             unlocked() {return player['+'].points.gte(19)}
         },
