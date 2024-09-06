@@ -60,6 +60,7 @@ function getPointGen() {
 	if (getBuyableAmount('u',11).gte(1)) gain = gain.times(buyableEffect('u',11))
 	if (player['+'].points.gte(13)) gain = gain.times(1.5)
 	if (player['+'].points.gte(16)) gain = gain.times(player['+'].points.pow(1.1))
+	if (hasUpgrade('i', 12)) gain = gain.times(2)
 	return gain
 }
 
