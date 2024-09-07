@@ -740,7 +740,7 @@ addLayer("i", {
         },
         16: {
             title: "UltraBuff",
-            description: "Boost the ultra byable effect",
+            description: "Boost the ultra buyable effect",
             cost: new Decimal(150),
             unlocked() {return player['+'].points.gte(20)}
         },
