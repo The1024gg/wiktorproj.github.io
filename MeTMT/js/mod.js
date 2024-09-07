@@ -13,8 +13,8 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.4",
-	name: "NoGap",
+	num: "0.4.1",
+	name: "NoGap T1",
 }
 
 let changelog = `galaxy has a changelog you don't need this one!`
@@ -61,6 +61,8 @@ function getPointGen() {
 	if (player['+'].points.gte(13)) gain = gain.times(1.5)
 	if (player['+'].points.gte(16)) gain = gain.times(player['+'].points.pow(1.1))
 	if (hasUpgrade('i', 12)) gain = gain.times(2)
+	if (hasUpgrade('i', 14)) gain = gain.times(5)
+	if (hasUpgrade('i', 17)) gain = gain.times(69420)
 	return gain
 }
 
@@ -71,7 +73,7 @@ function addedPlayerData() { return {
 // Display extra things at the top of the page
 var displayThings = [
 	function() {return 'You have ' + format(player['+'].points, 0) + ' additions'},
-	"Endgame: infinity upgrade 14",
+	"Endgame: infinity upgrade 17",
 	function() {
 		if (player.points.lte(100)) {
 			return "If 1 point is a centimeter, you'd have " + format(player.points) + "cm"
@@ -118,7 +120,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return hasUpgrade('i', 14)
+	return hasUpgrade('i', 17)
 }
 
 

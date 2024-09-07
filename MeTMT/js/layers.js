@@ -62,10 +62,31 @@ addLayer("+", {
                 ["display-text",
                     function() { if (player['+'].points.gte(19)) {return "- <span style=\"color: rgb(119, 119, 119); text-shadow: rgb(119, 119, 119) 0px 0px 10px;\">Infinity</span> layer, 4 upgrades for it"} },],
                 ["display-text",
-                    "<br><br>Please like this game the colors took so long ;-;"
-                ]
+                    function() { if (player['+'].points.gte(20)) {return "- +3 Upgrades for <span style=\"color: rgb(119, 119, 119); text-shadow: rgb(119, 119, 119) 0px 0px 10px;\">infinity</span> layer"} },],
+                ["display-text",
+                    "<br><br>Please like this game the colors took so long ;-;<br><br>"
+                ],
+                ['infobox', 'help']
             ],
         },
+    },
+    infoboxes: {
+        help: {
+            title: "Help for colors and sizes",
+            body() {
+                function makeid(length) {
+                    let result = '';
+                    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz?????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????';
+                    const charactersLength = characters.length;
+                    let counter = 0;
+                    while (counter < length) {
+                      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                      counter += 1;
+                    }
+                    return result;
+                }
+                return "<h3>Big text</h3> means that something is dynamic<br><span style=\"color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;\">Colored text with a shadow</span> mean layers/layer points<br>There are currently 7 colors that mean something:<br><span style=\"color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;\">Points</span><br><span style=\"color: rgb(95, 111, 127); text-shadow: rgb(95, 111, 127) 0px 0px 10px;\">Addition layer</span><br><span style=\"color: rgb(0, 255, 0); text-shadow: rgb(0, 255, 0) 0px 0px 10px;\">" + (player['+'].points.gte(1) ? "Prestige" : makeid(8)) + " layer</span><br><span style=\"color: rgb(0, 119, 255); text-shadow: rgb(0, 119, 255) 0px 0px 10px;\">" + (player['+'].points.gte(5) ? "Rebirth" : makeid(7)) + " layer</span><br><span style=\"color: rgb(255, 119, 0); text-shadow: rgb(255, 119, 0) 0px 0px 10px;\">" + (player['+'].points.gte(8) ? "Mega" : makeid(4)) + " layer</span><br><span style=\"color: rgb(255, 0, 255); text-shadow: rgb(255, 0, 255) 0px 0px 10px;\">" + (player['+'].points.gte(11) ? "Ultra" : makeid(5)) + " layer</span><br><span style=\"color: rgb(119, 119, 119); text-shadow: rgb(119, 119, 119) 0px 0px 10px;\">" + (player['+'].points.gte(19) ? "Infinity" : makeid(8)) + " layer</span><br>Colored dynamic text means that it uses a formula based off of the colors above" },
+        }
     },
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
@@ -630,7 +651,7 @@ addLayer("u", {
     },
     buyables: {
         11: {
-            cost(x) { return new Decimal(1).mul(x).pow(15) },
+            cost(x) { return new Decimal(2).mul(x.pow(2)).pow(15).pow(3) },
             title: "Ultra Buyable!",
             display() { return "Amount: " +  format(getBuyableAmount(this.layer, this.id).floor()) + "\nCost: " + format(this.cost().floor()) + " ulra points\nEffect: x" + format(this.effect()) + " point gain"},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
@@ -639,7 +660,7 @@ addLayer("u", {
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
             },
             effect() {
-                return new Decimal(1).mul(this.cost().sub(1)).times(50).pow(0.9).add(1)
+                return new Decimal(1).mul(this.cost().sub(1)).times(50 + (hasUpgrade('i', 16) ? 50 : 0)).pow(0.9).add(1)
             },
             unlocked() {return player['+'].points.gte(12)}
         },
@@ -647,6 +668,7 @@ addLayer("u", {
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
         if (hasUpgrade('i', 13)) mult = mult.times(2)
+        if (hasUpgrade('i', 15)) mult = mult.times(2)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -706,13 +728,32 @@ addLayer("i", {
         },
         14: {
             title: "The final upgrade for v0.3",
-            description: "Nothing, just nothing",
+            description: "Does something?",
             cost: new Decimal(10),
             unlocked() {return player['+'].points.gte(19)}
+        },
+        15: {
+            title: "Exchange",
+            description: "/2 infinity gain, x2 ultra gain",
+            cost: new Decimal(25),
+            unlocked() {return player['+'].points.gte(20)}
+        },
+        16: {
+            title: "UltraBuff",
+            description: "Boost the ultra byable effect",
+            cost: new Decimal(150),
+            unlocked() {return player['+'].points.gte(20)}
+        },
+        17: {
+            title: "Nice",
+            description: "x69,420 point gain, oh, and win",
+            cost: new Decimal(1000),
+            unlocked() {return player['+'].points.gte(20)}
         },
     },
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
+        if (hasUpgrade('i', 15)) mult = mult.times(0.5)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
