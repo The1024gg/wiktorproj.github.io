@@ -13,8 +13,8 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.4.1",
-	name: "NoGap T1",
+	num: "0.4.2",
+	name: "NoGap T2",
 }
 
 let changelog = `galaxy has a changelog you don't need this one!`
@@ -62,6 +62,7 @@ function getPointGen() {
 	if (player['+'].points.gte(16)) gain = gain.times(player['+'].points.pow(1.1))
 	if (hasUpgrade('i', 12)) gain = gain.times(2)
 	if (hasUpgrade('i', 14)) gain = gain.times(5)
+	if (hasUpgrade('i', 16)) gain = gain.times(9)
 	if (hasUpgrade('i', 17)) gain = gain.times(69420)
 	return gain
 }

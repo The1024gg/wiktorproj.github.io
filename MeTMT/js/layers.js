@@ -653,14 +653,14 @@ addLayer("u", {
         11: {
             cost(x) { return new Decimal(2).mul(x.pow(2)).pow(15).pow(3) },
             title: "Ultra Buyable!",
-            display() { return "Amount: " +  format(getBuyableAmount(this.layer, this.id).floor()) + "\nCost: " + format(this.cost().floor()) + " ulra points\nEffect: x" + format(this.effect()) + " point gain"},
+            display() { return "Amount: " +  format(getBuyableAmount(this.layer, this.id).floor()) + "\nCost: " + format(this.cost().floor()) + " ultra points\nEffect: x" + format(this.effect()) + " point gain"},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
             },
             effect() {
-                return new Decimal(1).mul(this.cost().sub(1)).times(50 + (hasUpgrade('i', 16) ? 50 : 0)).pow(0.9).add(1)
+                return new Decimal(1).mul(this.cost().sub(1)).times(50 + (hasUpgrade('i', 16) ? -40 : 0)).pow(0.9).add(1)
             },
             unlocked() {return player['+'].points.gte(12)}
         },
@@ -739,8 +739,8 @@ addLayer("i", {
             unlocked() {return player['+'].points.gte(20)}
         },
         16: {
-            title: "UltraBuff",
-            description: "Boost the ultra buyable effect",
+            title: "Exchange 2",
+            description: "Nerf the ultra buyable, but x9 point gain",
             cost: new Decimal(150),
             unlocked() {return player['+'].points.gte(20)}
         },
