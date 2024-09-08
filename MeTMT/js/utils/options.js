@@ -76,7 +76,7 @@ function changeFormat() {
 			options.formatting = "blind";
 			break;
 		case "blind":
-			options.formatting = "default";
+			options.formatting = "standard";
 			break;
 		case "standard":
 			options.formatting = "default";

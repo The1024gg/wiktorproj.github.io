@@ -131,35 +131,31 @@ function invertOOM(x){
 }
 
 function standardFormat(decimal) {
-    let formattingSymbols = [
+    first = ["", "k", "M", "B", "T", "Q", "q", "S", "s", "O", "N"]
+    symbols = [
         [
-            "", "k", "M", "B", "T", "Qu", "Qi", "Sx", "Sp", "O", "N", 
-            "Dc", "UDc", "DDc", "TDc", "QDc", "QiDc", "SDc", "SpDc", "ODc", "NDc",
-            "Vg", "UVg", "DVg", "TVg", "QVg", "QiVg", "SVg", "SpVg", "OVg", "NVg",
-            "Tg", "UTg", "DTg", "TTg", "QTg", "QiTg", "STg", "SpTg", "OTg", "NTg",
-            "Qg", "UQg", "DQg", "TQg", "QQg", "QiQg", "SQg", "SpQg", "OQg", "NQg",
-            "qg", "Uqg", "Dqg", "Tqg", "Qqg", "Qiqg", "Sqg", "Spqg", "Oqg", "Nqg",
-            "Sg", "USg", "DSg", "TSg", "QSg", "QiSg", "SSg", "SpSg", "OSg", "NSg",
-            "sg", "Usg", "Dsg", "Tsg", "Qsg", "Qisg", "Ssg", "Spsg", "Osg", "Nsg",
-            "Og", "UOg", "DOg", "TOg", "QOg", "QiOg", "SOg", "SpOg", "OOg", "NOg",
-            "Ng", "UNg", "DNg", "TNg", "QNg", "QiNg", "SNg", "SpNg", "ONg", "NNg"
+            "", "U", "D", "T", "Q", "q", "S", "s", "O", "N"
         ],
         [
-            "", "C", "D", "Tc", "Qc", "Qic", "Sc", "Spc", "Oc", "Nc"
+            "", "Dc", "Vg", "Tg", "Qg", "qg", "Sg", "sg", "Og", "Ng"
         ],
         [
-            "", "", "", "", "", "", "", "", "", ""
-        ]
+            "", "C", "D", "Tc", "Qc", "qc", "Sc", "sc", "Oc", "Nc"
+        ],
+        [
+            "", "Mi", "D-Mi", "T-Mi", "Q-Mi", "q-Mi", "S-Mi", "s-Mi", "O-Mi", "N-Mi"
+        ],
     ]
     decimal = new Decimal(decimal)
-    e3 = decimal.log10().div(3).floor()
-    if (decimal.gte(1e33)) { 
-        formattingSymbols[0][1] = "U"
-        formattingSymbols[0][2] = "D"
-        formattingSymbols[0][3] = "T"
-    }
-    if (formattingSymbols[2][e3.div(1000).floor()] == undefined ) return defaultFormat(decimal)
-    return defaultFormat(decimal.div(new Decimal(1000).pow(e3)), e3.gt(0) ? 2 : 1) + formattingSymbols[2][e3.div(1000).floor()] + formattingSymbols[0][e3.mod(101)] + formattingSymbols[1][e3.div(101).floor().mod(11)]
+    if (decimal.eq(0)) return "0"
+    e = decimal.log10().div(3).floor().clampMin(0)
+    prefix = ""
+    prefix += symbols[3][e.div(1000).floor().mod(10)]
+    prefix += symbols[0][e.sub(1).mod(10)]
+    prefix += symbols[1][e.div(10).floor().mod(10)]
+    prefix += symbols[2][e.div(100).floor().mod(10)]
+    if (first[e] != undefined) prefix = first[e]
+    return defaultFormat(decimal.div(new Decimal(10).pow(e.times(3)))) + prefix
 }
 
 setInterval(function() {
