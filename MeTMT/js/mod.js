@@ -1,6 +1,6 @@
 let modInfo = {
 	name: "MetaTree",
-	id: "metree",
+	id: "metree", // what is the point of this
 	author: "unicodes/wk",
 	pointsName: "points",
 	modFiles: ["layers.js", "tree.js"],

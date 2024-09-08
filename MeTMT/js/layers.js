@@ -54,7 +54,7 @@ addLayer("+", {
                 ["display-text",
                     function() { if (player['+'].points.gte(15)) {return "- +1 Upgrade for <span style=\"color: rgb(255, 0, 255); text-shadow: rgb(255, 0, 255) 0px 0px 10px;\">ultra</span> layer"} },],
                 ["display-text",
-                    function() { if (player['+'].points.gte(16)) {return "- Multiply <span style=\"color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;\">point</span> gain by additions (Currently: <h3 style=\"color: rgb(95, 111, 127); text-shadow: rgb(95, 111, 127) 0px 0px 10px;\">x" + format(player['+'].points.pow(1.1)) + "</h3>)"} },],
+                    function() { if (player['+'].points.gte(16)) {return "- Multiply <span style=\"color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;\">point</span> gain by <span style=\"color: rgb(95, 111, 127); text-shadow: rgb(95, 111, 127) 0px 0px 10px;\">additions</span> (Currently: <h3 style=\"color: rgb(95, 111, 127); text-shadow: rgb(95, 111, 127) 0px 0px 10px;\">x" + format(player['+'].points.pow(1.1)) + "</h3>)"} },],
                 ["display-text",
                     function() { if (player['+'].points.gte(17)) {return "- Add a number to the base <span style=\"color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;\">point</span> gain based off of <span style=\"color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;\">points</span> (Currently: <h3 style=\"color: rgb(255,255,255); text-shadow: rgb(255,255,255) 0px 0px 10px;\">+" + format(player.points.pow(0.025)) + "</h3>)"} },],
                 ["display-text",
