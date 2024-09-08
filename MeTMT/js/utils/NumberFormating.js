@@ -151,7 +151,7 @@ function standardFormat(decimal) {
     prefix += symbols[1][e.div(100000).floor().mod(10)]
     prefix += symbols[2][e.div(1000000).floor().mod(10)]
     prefix += e.div(1000).floor().mod(10).neq(0) ? "Mi" : ""
-    prefix += symbols[0][e.sub(1).mod(10)]
+    prefix += symbols[0][e.mod(10)]
     prefix += symbols[1][e.div(10).floor().mod(10)]
     prefix += symbols[2][e.div(100).floor().mod(10)]
     if (first[e] != undefined) prefix = first[e]
