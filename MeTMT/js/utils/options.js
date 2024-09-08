@@ -118,7 +118,7 @@ function milestoneShown(layer, id) {
 	}
 	return false;
 }
-function format(decimal, precision = 0) {
+function format(decimal, precision = 2) {
 	switch (options.formatting) {
 		case "default":
 			return defaultFormat(decimal, precision);
