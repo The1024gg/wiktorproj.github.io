@@ -161,7 +161,7 @@ function standardFormat(decimal) {
     decimal = new Decimal(decimal)
     e3 = decimal.log10().div(3).floor()
     if (formattingSymbols[1][e3.div(100).floor()] == undefined ) return defaultFormat(decimal)
-    return defaultFormat(decimal.div(new Decimal(1000).pow(e3)), e3.gt(0) ? 2 : 0) + formattingSymbols[0][e3.mod(100)] + formattingSymbols[1][e3.div(100).floor()]
+    return defaultFormat(decimal.div(new Decimal(1000).pow(e3)), e3.gt(0) ? 2 : 1) + formattingSymbols[0][e3.mod(100)] + formattingSymbols[1][e3.div(100).floor()]
 }
 
 setInterval(function() {
