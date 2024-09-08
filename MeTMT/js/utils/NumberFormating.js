@@ -96,7 +96,7 @@ function formatWhole(decimal) {
     decimal = new Decimal(decimal)
     if (decimal.gte(1e9)) return format(decimal, 2)
     if (decimal.lte(0.99) && !decimal.eq(0)) return format(decimal, 2)
-    return defaultFormat(decimal, 0)
+    return format(decimal, 0)
 }
 
 function formatTime(s) {
@@ -128,6 +128,40 @@ function invertOOM(x){
     x = new Decimal(10).pow(e).times(m)
 
     return x
+}
+
+formattingSymbols = [
+    [
+        "", "k", "M", "B", "T", "Qu", "Qi", "Sx", "Sp", "O", "N", 
+        "Dc", "UDc", "DDc", "TDc", "QDc", "QiDc", "SDc", "SpDc", "ODc", "NDc",
+        "Vg", "UVg", "DVg", "TVg", "QVg", "QiVg", "SVg", "SpVg", "OVg", "NVg",
+        "Tg", "UTg", "DTg", "TTg", "QTg", "QiTg", "STg", "SpTg", "OTg", "NTg",
+        "Qg", "UQg", "DQg", "TQg", "QQg", "QiQg", "SQg", "SpQg", "OQg", "NQg",
+        "qg", "Uqg", "Dqg", "Tqg", "Qqg", "Qiqg", "Sqg", "Spqg", "Oqg", "Nqg",
+        "Sg", "USg", "DSg", "TSg", "QSg", "QiSg", "SSg", "SpSg", "OSg", "NSg",
+        "sg", "Usg", "Dsg", "Tsg", "Qsg", "Qisg", "Ssg", "Spsg", "Osg", "Nsg",
+        "Og", "UOg", "DOg", "TOg", "QOg", "QiOg", "SOg", "SpOg", "OOg", "NOg",
+        "Ng", "UNg", "DNg", "TNg", "QNg", "QiNg", "SNg", "SpNg", "ONg", "NNg"
+    ],
+    [
+        "", "C", "Dc", "Tc", "Qc", "qc", "Sc", "sc", "Oc", "Nc",
+        "Ml", "CMl", "DMl", "TMl", "QMl", "QiMl", "SMl", "SpMl", "OMl", "NMl",
+        "Bl", "CBl", "DBl", "TBl", "QBl", "QiBl", "SBl", "SpBl", "OBl", "NBl",
+        "Tl", "CTl", "DTl", "TTl", "QTl", "QiTl", "STl", "SpTl", "OTl", "NTl",
+        "Ql", "CQl", "DQl", "TQl", "QQl", "QiQl", "SQl", "SpQl", "OQl", "NQl",
+        "ql", "Cql", "Dql", "Tql", "Qql", "Qiql", "Sql", "Spql", "Oql", "Nql",
+        "Sl", "CSl", "DSl", "TSl", "QSl", "QiSl", "SSl", "SpSl", "OSl", "NSl",
+        "sl", "Csl", "Dsl", "Tsl", "Qsl", "Qisl", "Ssl", "Spsl", "Osl", "Nsl",
+        "Ol", "COl", "DOl", "TOl", "QOl", "QiOl", "SOl", "SpOl", "OOl", "NOl",
+        "Nl", "CNl", "DNl", "TNl", "QNl", "QiNl", "SNl", "SpNl", "ONl", "NNl",
+    ]
+]
+
+function standardFormat(decimal) {
+    decimal = new Decimal(decimal)
+    e3 = decimal.log10().div(3).floor()
+    if (formattingSymbols[1][e3.div(100).floor()] == undefined ) return defaultFormat(decimal)
+    return defaultFormat(decimal.div(new Decimal(1000).pow(e3)), e3.gt(0) ? 2 : 0) + formattingSymbols[0][e3.mod(100)] + formattingSymbols[1][e3.div(100).floor()]
 }
 
 setInterval(function() {

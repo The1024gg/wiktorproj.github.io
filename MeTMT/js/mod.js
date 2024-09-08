@@ -13,8 +13,8 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.4.2",
-	name: "NoGap T2",
+	num: "0.4½",
+	name: "The option update",
 }
 
 let changelog = `galaxy has a changelog you don't need this one!`
@@ -135,7 +135,29 @@ var backgroundStyle = {
 
 // You can change this if you have things that can be messed up by long tick lengths
 function maxTickLength() {
-	return(3600) // Default is 1 hour which is just arbitrarily large
+	switch (options.maxTickLen) {
+		case "1h":
+			return 60*60
+			break;
+		case "3h":
+			return 60*60*3
+			break;
+		case "10h":
+			return 60*60*10
+			break;
+		case "10s":
+			return 10
+			break;
+		case "1m":
+			return 60
+			break;
+		case "5m":
+			return 60*5
+			break;
+		case "30m":
+			return 60*30
+			break;
+	}
 }
 
 // Use this if you need to undo inflation from an older version. If the version is older than the version that fixed the issue,

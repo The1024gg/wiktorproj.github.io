@@ -164,6 +164,7 @@ var systemComponents = {
                 <td><button class="opt" onclick="exportSave()">Export to clipboard</button></td>
                 <td><button class="opt" onclick="importSave()">Import</button></td>
                 <td><button class="opt" onclick="toggleOpt('offlineProd')">Offline Prod: {{ options.offlineProd?"ON":"OFF" }}</button></td>
+				<td><button class="opt" onclick="toggleOpt('maxTickLen')"> Max Tick Length: {{ options.maxTickLen }}</button></td>
             </tr>
             <tr>
                 <td><button class="opt" onclick="switchTheme()">Theme: {{ getThemeName() }}</button></td>
@@ -178,6 +179,7 @@ var systemComponents = {
 			<tr>
                 <td><button class="opt" onclick="toggleOpt('formatting'); needsCanvasUpdate = true">Formatting: {{ options.formatting }}</button></td>
 				<td><button class="opt" onclick="toggleOpt('addictionMode')">Addiction mode: {{ options.addictionMode?"ON":"OFF" }}</button></td>
+				<td><button class="opt" onclick="toggleOpt('disabledTextFlickering')">Disabled Text Flickering: {{ options.disabledTextFlickering?"YES":"NO" }}</button></td>
 				</tr> 
         </table>`
     },

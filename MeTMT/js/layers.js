@@ -74,17 +74,6 @@ addLayer("+", {
         help: {
             title: "Help for colors and sizes",
             body() {
-                function makeid(length) {
-                    let result = '';
-                    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz?????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????';
-                    const charactersLength = characters.length;
-                    let counter = 0;
-                    while (counter < length) {
-                      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-                      counter += 1;
-                    }
-                    return result;
-                }
                 return "<h3>Big text</h3> means that something is dynamic<br><span style=\"color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;\">Colored text with a shadow</span> mean layers/layer points<br>There are currently 7 colors that mean something:<br><span style=\"color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;\">Points</span><br><span style=\"color: rgb(95, 111, 127); text-shadow: rgb(95, 111, 127) 0px 0px 10px;\">Addition layer</span><br><span style=\"color: rgb(0, 255, 0); text-shadow: rgb(0, 255, 0) 0px 0px 10px;\">" + (player['+'].points.gte(1) ? "Prestige" : makeid(8)) + " layer</span><br><span style=\"color: rgb(0, 119, 255); text-shadow: rgb(0, 119, 255) 0px 0px 10px;\">" + (player['+'].points.gte(5) ? "Rebirth" : makeid(7)) + " layer</span><br><span style=\"color: rgb(255, 119, 0); text-shadow: rgb(255, 119, 0) 0px 0px 10px;\">" + (player['+'].points.gte(8) ? "Mega" : makeid(4)) + " layer</span><br><span style=\"color: rgb(255, 0, 255); text-shadow: rgb(255, 0, 255) 0px 0px 10px;\">" + (player['+'].points.gte(11) ? "Ultra" : makeid(5)) + " layer</span><br><span style=\"color: rgb(119, 119, 119); text-shadow: rgb(119, 119, 119) 0px 0px 10px;\">" + (player['+'].points.gte(19) ? "Infinity" : makeid(8)) + " layer</span><br>Colored dynamic text means that it uses a formula based off of the colors above" },
         }
     },
@@ -211,6 +200,11 @@ addLayer("a", {
             name: "v0.4.x complete",
             tooltip: "Get infinity upgrade 17",
             done() {return hasUpgrade('i', 17)}
+        },
+        31: {
+            name: "Infinity of infinities",
+            tooltip: "Get 2^1024 infinities",
+            done() {return player['i'].points.gte(new Decimal(2).pow(1024))}
         },
     },
     tabFormat: {

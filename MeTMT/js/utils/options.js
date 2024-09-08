@@ -15,8 +15,22 @@ function getStartOptions() {
 		oldStyle: false,
 		tooltipForcing: true,
 		formatting: "default",
-		addictionMode: false
+		addictionMode: false,
+		disabledTextFlickering: false,
+		maxTickLen: "1h"
 	}
+}
+
+function makeid(length) {
+	let result = '';
+	const characters = options.disabledTextFlickering ? '?' : 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz?';
+	const charactersLength = characters.length;
+	let counter = 0;
+	while (counter < length) {
+	  result += characters.charAt(Math.floor(Math.random() * charactersLength));
+	  counter += 1;
+	}
+	return result;
 }
 
 function toggleOpt(name) {
@@ -24,6 +38,10 @@ function toggleOpt(name) {
 		return;
 	if (name == "formatting") {
 		changeFormat()
+		return;
+	}
+	if (name == "maxTickLen") {
+		changeMTL()
 		return;
 	}
 	options[name] = !options[name];
@@ -55,6 +73,12 @@ function changeFormat() {
 			options.formatting = "exponent";
 			break;
 		case "exponent":
+			options.formatting = "blind";
+			break;
+		case "blind":
+			options.formatting = "standard";
+			break;
+		case "standard":
 			options.formatting = "default";
 			break;
 	}
@@ -94,13 +118,42 @@ function milestoneShown(layer, id) {
 	}
 	return false;
 }
-function format(decimal) {
+function format(decimal, precision = 0) {
 	switch (options.formatting) {
 		case "default":
-			return defaultFormat(decimal);
+			return defaultFormat(decimal, precision);
 		case "infinity":
 			return infFormat(decimal);
 		case "exponent":
 			return eFormat(decimal);
+		case "blind":
+			return "";
+		case "standard":
+			return standardFormat(decimal);
+	}
+}
+function changeMTL() {
+	switch (options.maxTickLen) {
+		case "1h":
+			options.maxTickLen = "3h"
+			break;
+		case "3h":
+			options.maxTickLen = "10h"
+			break;
+		case "10h":
+			options.maxTickLen = "10s"
+			break;
+		case "10s":
+			options.maxTickLen = "1m"
+			break;
+		case "1m":
+			options.maxTickLen = "5m"
+			break;
+		case "5m":
+			options.maxTickLen = "30m"
+			break;
+		case "30m":
+			options.maxTickLen = "1h"
+			break;
 	}
 }
