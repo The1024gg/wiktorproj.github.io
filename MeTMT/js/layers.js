@@ -203,9 +203,14 @@ addLayer("a", {
             done() {return player['i'].points.gte(1)} // ignore the lazy solution
         },
         28: {
-            name: "v0.3.x & v0.4.x complete",
+            name: "v0.3.x complete",
             tooltip: "Get infinity upgrade 14",
             done() {return hasUpgrade('i', 14)}
+        },
+        29: {
+            name: "v0.4.x complete",
+            tooltip: "Get infinity upgrade 17",
+            done() {return hasUpgrade('i', 17)}
         },
     },
     tabFormat: {
