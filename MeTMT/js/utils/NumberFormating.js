@@ -142,15 +142,15 @@ function standardFormat(decimal) {
         [
             "", "C", "D", "Tc", "Qc", "qc", "Sc", "sc", "Oc", "Nc"
         ],
-        [
-            "", "Mi", "D-Mi", "T-Mi", "Q-Mi", "q-Mi", "S-Mi", "s-Mi", "O-Mi", "N-Mi"
-        ],
     ]
     decimal = new Decimal(decimal)
     if (decimal.eq(0)) return "0"
     e = decimal.log10().div(3).floor().clampMin(0)
     prefix = ""
-    prefix += symbols[3][e.div(1000).floor().mod(10)]
+    prefix += symbols[0][e.div(10000).floor().mod(10)]
+    prefix += symbols[1][e.div(100000).floor().mod(10)]
+    prefix += symbols[2][e.div(1000000).floor().mod(10)]
+    prefix += e.div(1000).floor().mod(10).neq(0) ? "Mi" : ""
     prefix += symbols[0][e.sub(1).mod(10)]
     prefix += symbols[1][e.div(10).floor().mod(10)]
     prefix += symbols[2][e.div(100).floor().mod(10)]
