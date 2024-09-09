@@ -131,7 +131,7 @@ function invertOOM(x){
 }
 
 function standardFormat(decimal) {
-    first = ["", "k", "M", "B", "T", "Q", "q", "S", "s", "O", "N"]
+    first = ["", "k", "M", "B"]
     symbols = [
         [
             "", "U", "D", "T", "Q", "q", "S", "s", "O", "N"
