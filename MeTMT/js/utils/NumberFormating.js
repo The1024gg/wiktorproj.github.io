@@ -140,7 +140,7 @@ function standardFormat(decimal) {
             "", "Dc", "Vg", "Tg", "Qg", "qg", "Sg", "sg", "Og", "Ng"
         ],
         [
-            "", "C", "D", "Tc", "Qc", "qc", "Sc", "sc", "Oc", "Nc"
+            "", "C", "Du", "Tc", "Qc", "qc", "Sc", "sc", "Oc", "Nc"
         ],
     ]
     decimal = new Decimal(decimal)
