@@ -13,13 +13,15 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.4½",
-	name: "The option update",
+	num: "0.4½.1",
+	name: "The option update T1",
 }
 
 let changelog = `galaxy has a changelog you don't need this one!`
 
 let winText = `Wow! You won! But there will be more <i>soon...</i>`
+
+let additionCap = 20
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
 // (The ones here are examples, all official functions are already taken care of)
@@ -33,6 +35,8 @@ function getStartPoints(){
 function canGenPoints(){
 	return true
 }
+
+overginded = false
 
 // Calculate points/sec!
 function getPointGen() {
