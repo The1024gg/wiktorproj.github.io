@@ -19,8 +19,9 @@ addLayer("+", {
                 "main-display",
                 "prestige-button",
                 "resource-display",
+                ['bar', 'additionReq'],
                 ["display-text",
-                    function() { return "Features:" },],
+                    function() { return "<br>Features:" },],
                 ["display-text",
                     function() { if (player['+'].points.gte(0)) {return "- <span style=\"color: rgb(95, 111, 127); text-shadow: rgb(95, 111, 127) 0px 0px 10px;\">Addition</span> layer"} },],
                 ["display-text",
@@ -84,6 +85,18 @@ addLayer("+", {
                 return "<span style=\"color: rgb(95, 111, 127); text-shadow: rgb(95, 111, 127) 0px 0px 10px;\">Addition</span> cap is currently " + format(additionCap) 
             }
         }
+    },
+    bars: {
+        additionReq: {
+            direction: RIGHT,
+            width: 700,
+            height: 50,
+            progress() { return player.points.div(getNextAt('+')) },
+            fillStyle: {'background-color': "#5f6f7f"},
+            display() {
+                return `${this.progress().gte(1) ? `<span style=\"color: hsl(${!options.disabledTextColorChange ? this.progress().pow(0.5).times(10).add(120).mod(360) : 120}, 100%, 50%);\">` : ""}${format(player.points) + " / " + format(getNextAt('+')) + " <span style=\"color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;\">points</span> (" + format(this.progress().times(100)) + "%)"}</span>`
+            },
+        },
     },
     automate() {
         if (player['+'].points.gt(additionCap)) { 
@@ -678,7 +691,7 @@ addLayer("u", {
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
             },
             effect() {
-                return new Decimal(1).mul(this.cost().sub(1)).times(50 + (hasUpgrade('i', 16) ? -40 : 0)).pow(0.9).add(1)
+                return new Decimal(1).mul(this.cost().sub(1)).times(50 + (hasUpgrade('i', 16) ? -40 : 0)).pow(0.3).add(0.99)
             },
             unlocked() {return player['+'].points.gte(12)}
         },
@@ -698,6 +711,21 @@ addLayer("u", {
         return 0
     },
     automate() {
+        if (tmp['u'].buyables[11].canAfford && hasUpgrade("u", 13)) {
+            addBuyables('u', 11, 1)
+        }
+        if (tmp['u'].buyables[11].canAfford && hasUpgrade("u", 13)) {
+            addBuyables('u', 11, 1)
+        }
+        if (tmp['u'].buyables[11].canAfford && hasUpgrade("u", 13)) {
+            addBuyables('u', 11, 1)
+        }
+        if (tmp['u'].buyables[11].canAfford && hasUpgrade("u", 13)) {
+            addBuyables('u', 11, 1)
+        }
+        if (tmp['u'].buyables[11].canAfford && hasUpgrade("u", 13)) {
+            addBuyables('u', 11, 1)
+        }
         if (tmp['u'].buyables[11].canAfford && hasUpgrade("u", 13)) {
             addBuyables('u', 11, 1)
         }

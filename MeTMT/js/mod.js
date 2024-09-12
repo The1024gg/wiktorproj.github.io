@@ -13,8 +13,8 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.4½.1",
-	name: "The option update T1",
+	num: "0.4½.2",
+	name: "The option update T2",
 }
 
 let changelog = `galaxy has a changelog you don't need this one!`

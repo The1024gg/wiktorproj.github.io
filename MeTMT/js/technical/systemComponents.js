@@ -170,6 +170,7 @@ var systemComponents = {
                 <td><button class="opt" onclick="switchTheme()">Theme: {{ getThemeName() }}</button></td>
                 <td><button class="opt" onclick="adjustMSDisp()">Show Milestones: {{ MS_DISPLAYS[MS_SETTINGS.indexOf(options.msDisplay)]}}</button></td>
                 <td><button class="opt" onclick="toggleOpt('hqTree')">High-Quality Tree: {{ options.hqTree?"ON":"OFF" }}</button></td>
+				<td><button class="opt" onclick="toggleOpt('disabledTextColorChange')">Disabled Text Color Change: {{ options.disabledTextColorChange?"YES":"NO" }}</button></td>
             </tr>
             <tr>
                 <td><button class="opt" onclick="toggleOpt('hideChallenges')">Completed Challenges: {{ options.hideChallenges?"HIDDEN":"SHOWN" }}</button></td>

@@ -17,7 +17,8 @@ function getStartOptions() {
 		formatting: "default",
 		addictionMode: false,
 		disabledTextFlickering: false,
-		maxTickLen: "1h"
+		maxTickLen: "1h",
+		disabledTextColorChange: false
 	}
 }
 
