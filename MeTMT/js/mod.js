@@ -13,15 +13,15 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.4½.2",
-	name: "The option update T2",
+	num: "0.5",
+	name: "ωOMEGAω",
 }
 
 let changelog = `galaxy has a changelog you don't need this one!`
 
 let winText = `Wow! You won! But there will be more <i>soon...</i>`
 
-let additionCap = 20
+let additionCap = 22
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
 // (The ones here are examples, all official functions are already taken care of)
@@ -68,17 +68,21 @@ function getPointGen() {
 	if (hasUpgrade('i', 14)) gain = gain.times(5)
 	if (hasUpgrade('i', 16)) gain = gain.times(9)
 	if (hasUpgrade('i', 17)) gain = gain.times(69420)
+	if (player['+'].points.gte(21)) gain = gain.pow(0.96)
+	if (player.OMEGA.gte(1)) gain = gain.times(player.OMEGA.pow(0.05))
 	return gain
 }
 
 // You can add non-layer related variables that should to into "player" and be saved here, along with default values
 function addedPlayerData() { return {
+	OMEGA: new Decimal(0),
+	OMEGAGAIN: new Decimal(0)
 }}
 
 // Display extra things at the top of the page
 var displayThings = [
 	function() {return 'You have ' + format(player['+'].points, 0) + ' additions'},
-	"Endgame: infinity upgrade 17",
+	"Endgame: 1,000 omega",
 	function() {
 		if (player.points.lte(100)) {
 			return "If 1 point is a centimeter, you'd have " + format(player.points) + "cm"
@@ -125,7 +129,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return hasUpgrade('i', 17)
+	return player.OMEGA.gte(1000)
 }
 
 

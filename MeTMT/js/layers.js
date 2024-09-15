@@ -59,11 +59,15 @@ addLayer("+", {
                 ["display-text",
                     function() { if (player['+'].points.gte(17)) {return "- Add a number to the base <span style=\"color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;\">point</span> gain based off of <span style=\"color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;\">points</span> (Currently: <h3 style=\"color: rgb(255,255,255); text-shadow: rgb(255,255,255) 0px 0px 10px;\">+" + format(player.points.pow(0.025)) + "</h3>)"} },],
                 ["display-text",
-                    function() { if (player['+'].points.gte(18)) {return "- Gain <h3 style=\"color: rgb(0,255,0); text-shadow: rgb(0,255,0) 0px 0px 10px;\">" + format(player['p'].points.add(1).pow(0.0075).log(2)) + "%</h3> ultra points per second"} },],
+                    function() { if (player['+'].points.gte(18)) {return "- Gain <h3 style=\"color: rgb(0,255,0); text-shadow: rgb(0,255,0) 0px 0px 10px;\">" + format(player['p'].points.add(1).pow(0.0075).log(2)) + "%</h3> <span style=\"color: rgb(255, 0, 255); text-shadow: rgb(255, 0, 255) 0px 0px 10px;\">ultra</span> points per second"} },],
                 ["display-text",
                     function() { if (player['+'].points.gte(19)) {return "- <span style=\"color: rgb(119, 119, 119); text-shadow: rgb(119, 119, 119) 0px 0px 10px;\">Infinity</span> layer, 4 upgrades for it"} },],
                 ["display-text",
                     function() { if (player['+'].points.gte(20)) {return "- +3 Upgrades for <span style=\"color: rgb(119, 119, 119); text-shadow: rgb(119, 119, 119) 0px 0px 10px;\">infinity</span> layer"} },],
+                ["display-text",
+                    function() { if (player['+'].points.gte(21)) {return "- ^0.96 <span style=\"color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;\">point</span> gain"} },],
+                ["display-text",
+                    function() { if (player['+'].points.gte(2)) {return `- Start gaining <span style="color: hsl(${(player.timePlayed * 15) % 360}, 100%, 50%); text-shadow: hsl(${(player.timePlayed * 15) % 360}, 100%, 50%) 0px 0px 10px;">omega</span>, and unlock <span style="color: hsl(${(player.timePlayed * 15) % 360}, 100%, 50%); text-shadow: hsl(${(player.timePlayed * 15) % 360}, 100%, 50%) 0px 0px 10px;">omega</span> upgrades`} },],
                 ["display-text",
                     "<br><br>Please like this game the colors took so long ;-;<br><br>"
                 ],
@@ -76,7 +80,7 @@ addLayer("+", {
         help: {
             title: "Help for colors and sizes",
             body() {
-                return "<h3>Big text</h3> means that something is dynamic<br><span style=\"color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;\">Colored text with a shadow</span> mean layers/layer points<br>There are currently 7 colors that mean something:<br><span style=\"color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;\">Points</span><br><span style=\"color: rgb(95, 111, 127); text-shadow: rgb(95, 111, 127) 0px 0px 10px;\">Addition layer</span><br><span style=\"color: rgb(0, 255, 0); text-shadow: rgb(0, 255, 0) 0px 0px 10px;\">" + (player['+'].points.gte(1) ? "Prestige" : makeid(8)) + " layer</span><br><span style=\"color: rgb(0, 119, 255); text-shadow: rgb(0, 119, 255) 0px 0px 10px;\">" + (player['+'].points.gte(5) ? "Rebirth" : makeid(7)) + " layer</span><br><span style=\"color: rgb(255, 119, 0); text-shadow: rgb(255, 119, 0) 0px 0px 10px;\">" + (player['+'].points.gte(8) ? "Mega" : makeid(4)) + " layer</span><br><span style=\"color: rgb(255, 0, 255); text-shadow: rgb(255, 0, 255) 0px 0px 10px;\">" + (player['+'].points.gte(11) ? "Ultra" : makeid(5)) + " layer</span><br><span style=\"color: rgb(119, 119, 119); text-shadow: rgb(119, 119, 119) 0px 0px 10px;\">" + (player['+'].points.gte(19) ? "Infinity" : makeid(8)) + " layer</span><br>Colored dynamic text means that it uses a formula based off of the colors above" 
+                return "<h3>Big text</h3> means that something is dynamic<br><span style=\"color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;\">Colored text with a shadow</span> mean layers/layer points<br>There are currently 8 colors that mean something:<br><span style=\"color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;\">Points</span><br><span style=\"color: rgb(95, 111, 127); text-shadow: rgb(95, 111, 127) 0px 0px 10px;\">Addition layer</span><br><span style=\"color: rgb(0, 255, 0); text-shadow: rgb(0, 255, 0) 0px 0px 10px;\">" + (player['+'].points.gte(1) ? "Prestige" : makeid(8)) + " layer</span><br><span style=\"color: rgb(0, 119, 255); text-shadow: rgb(0, 119, 255) 0px 0px 10px;\">" + (player['+'].points.gte(5) ? "Rebirth" : makeid(7)) + " layer</span><br><span style=\"color: rgb(255, 119, 0); text-shadow: rgb(255, 119, 0) 0px 0px 10px;\">" + (player['+'].points.gte(8) ? "Mega" : makeid(4)) + " layer</span><br><span style=\"color: rgb(255, 0, 255); text-shadow: rgb(255, 0, 255) 0px 0px 10px;\">" + (player['+'].points.gte(11) ? "Ultra" : makeid(5)) + " layer</span><br><span style=\"color: rgb(119, 119, 119); text-shadow: rgb(119, 119, 119) 0px 0px 10px;\">" + (player['+'].points.gte(19) ? "Infinity" : makeid(8)) + ` layer</span><br><span style="color: hsl(${(player.timePlayed * 15) % 360}, 100%, 50%); text-shadow: hsl(${(player.timePlayed * 15) % 360}, 100%, 50%) 0px 0px 10px;">` + (player['+'].points.gte(19) ? "Omega" : makeid(5)) + "</span><br>Colored dynamic text means that it uses a formula based off of the colors above" 
             },
         },
         cap: {
@@ -234,6 +238,16 @@ addLayer("a", {
             done() {return overginded}
         },
         32: {
+            name: "ω",
+            tooltip: "Get 1 omega",
+            done() {return player.OMEGA.gte(1)}
+        },
+        33: {
+            name: "0.5.x complete",
+            tooltip: "Get 1000 omega",
+            done() {return player.OMEGA.gte(1000)}
+        },
+        34: {
             name: "Infinity of infinities",
             tooltip: "Get 2^1024 infinities",
             done() {return player['i'].points.gte(new Decimal(2).pow(1024))}
@@ -714,21 +728,6 @@ addLayer("u", {
         if (tmp['u'].buyables[11].canAfford && hasUpgrade("u", 13)) {
             addBuyables('u', 11, 1)
         }
-        if (tmp['u'].buyables[11].canAfford && hasUpgrade("u", 13)) {
-            addBuyables('u', 11, 1)
-        }
-        if (tmp['u'].buyables[11].canAfford && hasUpgrade("u", 13)) {
-            addBuyables('u', 11, 1)
-        }
-        if (tmp['u'].buyables[11].canAfford && hasUpgrade("u", 13)) {
-            addBuyables('u', 11, 1)
-        }
-        if (tmp['u'].buyables[11].canAfford && hasUpgrade("u", 13)) {
-            addBuyables('u', 11, 1)
-        }
-        if (tmp['u'].buyables[11].canAfford && hasUpgrade("u", 13)) {
-            addBuyables('u', 11, 1)
-        }
     },
     row: 3, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
@@ -753,6 +752,29 @@ addLayer("i", {
     baseAmount() {return player.u.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 0.1, // Prestige currency exponent
+    tabFormat: {
+        "Infinity": {
+            content: [
+                "main-display",
+                "prestige-button",
+                "resource-display",
+                "blank",
+                "upgrades"
+            ],
+        },
+        "Omega": {
+            content: [
+                "main-display",
+                "prestige-button",
+                "resource-display",
+                "blank",
+                ["display-text", function() {return `<span>You have </span><h2 style="color: hsl(${(player.timePlayed * 15) % 360}, 100%, 50%); text-shadow: hsl(${(player.timePlayed * 15) % 360}, 100%, 50%) 0px 0px 10px;">${format(player.OMEGA)}</h2> omega</span>` }],
+                ["display-text", function() {return `<span>You have gaining ${format(player.OMEGAGAIN)} omega per second</span>` }],
+                ["display-text", function() {return `<span>You need 22 <span style=\"color: rgb(95, 111, 127); text-shadow: rgb(95, 111, 127) 0px 0px 10px;\">additions</span> to gain omega</span>` }],
+                ["display-text", function() {return `<span>Omega is boosting point gain by x${format(player.OMEGA.pow(0.05))}</span>` }]
+            ],
+        },
+    },
     upgrades: {
         11: {
             title: "The infinity",
@@ -792,10 +814,49 @@ addLayer("i", {
         },
         17: {
             title: "Nice",
-            description: "x69,420 point gain, oh, and win",
+            description: "x69,420 point gain<s>, oh, and win</s>",
             cost: new Decimal(1000),
             unlocked() {return player['+'].points.gte(20)}
         },
+        1001: {
+            pay() {
+                player.OMEGA = player.OMEGA.sub(10)
+            },
+            canAfford() {
+                return player.OMEGA.gte(10)
+            },
+            unlocked() {return player['+'].points.gte(22)},
+            fullDisplay() {return `<h3>Omega</h3><br>x2 omega gain<br><br>Cost: ${format(new Decimal(10))} omega` },
+        },
+        1002: {
+            pay() {
+                player.OMEGA = player.OMEGA.sub(150)
+            },
+            canAfford() {
+                return player.OMEGA.gte(150)
+            },
+            unlocked() {return player['+'].points.gte(22)},
+            fullDisplay() {return `<h3>Extraordinary</h3><br>x3 omega gain<br><br>Cost: ${format(new Decimal(150))} omega` },
+        },
+        1003: {
+            pay() {
+                player.OMEGA = player.OMEGA.sub(250)
+            },
+            canAfford() {
+                return player.OMEGA.gte(250)
+            },
+            unlocked() {return player['+'].points.gte(22)},
+            fullDisplay() {return `<h3>Round</h3><br>+4 omega gain<br><br>Cost: ${format(new Decimal(250))} omega` },
+        },
+    },
+    automate() {
+        let gain = new Decimal(0)
+        if (player['+'].points.gte(22)) gain = new Decimal(1)
+        if (hasUpgrade('i', 1001)) gain = gain.times(2)
+        if (hasUpgrade('i', 1002)) gain = gain.times(3)
+        if (hasUpgrade('i', 1003)) gain = gain.add(4)
+        player.OMEGAGAIN = gain
+        player.OMEGA = player.OMEGA.add(player.OMEGAGAIN.div(20))
     },
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
