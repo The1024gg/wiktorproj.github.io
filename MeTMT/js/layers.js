@@ -67,7 +67,7 @@ addLayer("+", {
                 ["display-text",
                     function() { if (player['+'].points.gte(21)) {return "- ^0.96 <span style=\"color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px;\">point</span> gain"} },],
                 ["display-text",
-                    function() { if (player['+'].points.gte(2)) {return `- Start gaining <span style="color: hsl(${(player.timePlayed * 15) % 360}, 100%, 50%); text-shadow: hsl(${(player.timePlayed * 15) % 360}, 100%, 50%) 0px 0px 10px;">omega</span>, and unlock <span style="color: hsl(${(player.timePlayed * 15) % 360}, 100%, 50%); text-shadow: hsl(${(player.timePlayed * 15) % 360}, 100%, 50%) 0px 0px 10px;">omega</span> upgrades`} },],
+                    function() { if (player['+'].points.gte(22)) {return `- Start gaining <span style="color: hsl(${(player.timePlayed * 15) % 360}, 100%, 50%); text-shadow: hsl(${(player.timePlayed * 15) % 360}, 100%, 50%) 0px 0px 10px;">omega</span>, and unlock <span style="color: hsl(${(player.timePlayed * 15) % 360}, 100%, 50%); text-shadow: hsl(${(player.timePlayed * 15) % 360}, 100%, 50%) 0px 0px 10px;">omega</span> upgrades`} },],
                 ["display-text",
                     "<br><br>Please like this game the colors took so long ;-;<br><br>"
                 ],
