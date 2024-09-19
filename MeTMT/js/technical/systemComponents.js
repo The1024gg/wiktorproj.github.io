@@ -146,6 +146,8 @@ var systemComponents = {
 		Formatting tester: <br><input type="text" id="tester">
 		<br><span id="tout"></span>
 		<br><br>
+		<a href="..\\index.html">Homepage</a>
+		<br><br>
         <h3>Hotkeys</h3><br>
         <span v-for="key in hotkeys" v-if="player[key.layer].unlocked && tmp[key.layer].hotkeys[key.id].unlocked"><br>{{key.description}}</span></div>
     `
