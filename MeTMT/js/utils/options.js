@@ -80,6 +80,9 @@ function changeFormat() {
 			options.formatting = "standard";
 			break;
 		case "standard":
+			options.formatting = "altstandard";
+			break;
+		case "altstandard":
 			options.formatting = "default";
 			break;
 	}
@@ -131,6 +134,8 @@ function format(decimal, precision = 2) {
 			return "";
 		case "standard":
 			return standardFormat(decimal);
+		case "altstandard":
+			return altStandardFormat(decimal);
 	}
 }
 function changeMTL() {
