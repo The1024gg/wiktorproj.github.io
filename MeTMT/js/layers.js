@@ -983,6 +983,29 @@ addLayer("x", {
             cost: new Decimal(500),
             unlocked() {return player['+'].points.gte(25)}
         },
+	14: {
+	    title: "Point Stacks",
+	    description: "Multiply multiplier gain by multiplier",
+            effect() {
+                return player.x.points.add(1).pow(0.04)
+            },
+            effectDisplay() {return 'x' + format(upgradeEffect(this.layer, this.id))},
+            tooltip: "(mult+1)<sup>0.04</sup>",
+            cost: new Decimal(10000),
+            unlocked() {return player['+'].points.gte(26)}
+        },
+	15: {
+	    title: "Multiplication II",
+            description: "x5 prestige point and x2 multiplier gain",
+            cost: new Decimal(5e4),
+            unlocked() {return player['+'].points.gte(26)}
+        },
+	16: {
+	    title: "Multiplication III",
+            description: "x5 rebirth point and x5 multiplier gain",
+            cost: new Decimal(1e6),
+            unlocked() {return player['+'].points.gte(26)}
+        },
     },
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
@@ -997,6 +1020,10 @@ addLayer("x", {
         if (hasUpgrade('x', 11)) gain = gain.times(5)
         if (hasUpgrade('x', 12)) gain = gain.times(10)
         if (hasUpgrade('x', 13)) gain = gain.times(upgradeEffect('x', 13))
+	if (player['+'].points.gte(26)) gain = gain.add(99)
+        if (hasUpgrade('x', 15)) gain = gain.times(2)
+        if (hasUpgrade('x', 16)) gain = gain.times(10)
+        if (hasUpgrade('x', 14)) gain = gain.times(upgradeEffect('x', 14))
         mg = gain
         player['x'].points = player['x'].points.add(gain.times(diff))
     },
