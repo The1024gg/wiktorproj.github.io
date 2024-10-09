@@ -74,6 +74,8 @@ addLayer("+", {
                     function() { if (player['+'].points.gte(24)) {return `- Automate <span style=\"color: rgb(255, 0, 255); text-shadow: rgb(255, 0, 255) 0px 0px 10px;\">ultra</span> upgrades`} },],
                 ["display-text",
                     function() { if (player['+'].points.gte(25)) {return `- Unlock <span style=\"color: rgb(255, 0, 0); text-shadow: rgb(255, 0, 0) 0px 0px 10px;\">multiplier</span>`} },],
+		["display-text",
+                    function() { if (player['+'].points.gte(26)) {return `- Unlock 3 upgrades of <span style=\"color: rgb(255, 0, 0); text-shadow: rgb(255, 0, 0) 0px 0px 10px;\">multiplier</span>`} },],
                 ["display-text",
                     "<br><br>Please like this game the colors took so long ;-;<br><br>"
                 ],
@@ -276,7 +278,17 @@ addLayer("a", {
             tooltip: "Get 1000000 omega",
             done() {return player['i'].omega.gte(1000000)}
         },
-        37: {
+	37: {
+	    name: "TEN MILLION POWER!!!",
+	    tooltip: "Unlock multiplier.",
+	    done() {return player['+'].points.gte(25)}
+	},
+	38: {
+	    name: "Million Stacks",
+	    tooltip: "Reach 1,000,000 multiplier.",
+	    done() {return player['x'].points.gte(1e6)}
+	},
+        1001: {
             name: "Infinity of infinities",
             tooltip: "Get 2^1024 infinities",
             done() {return player['i'].points.gte(new Decimal(2).pow(1024))}
