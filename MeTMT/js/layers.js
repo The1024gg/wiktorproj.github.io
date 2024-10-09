@@ -288,6 +288,11 @@ addLayer("a", {
 	    tooltip: "Reach 1,000,000 multiplier.",
 	    done() {return player['x'].points.gte(1e6)}
 	},
+	39: {
+	    name: "Synergism",
+	    tooltip: "Reach 1,000,000,000 multiplier.",
+	    done() {return player['x'].points.gte(1e9)}
+	},
         1001: {
             name: "Infinity of infinities",
             tooltip: "Get 2^1024 infinities",
