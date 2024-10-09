@@ -143,7 +143,7 @@ var systemComponents = {
         <a class="link" href="http://discord.gg/wwQfgPa" target="_blank" v-bind:style="{'font-size': '16px'}">Main Prestige Tree server</a><br>
 		<br><br>
         Time Played: {{ formatTime(player.timePlayed) }}<br><br>
-		Formatting tester: <br><input type="text" id="tester">
+		Formatting test: <br><input type="text" id="tester">
 		<br><span id="tout"></span>
 		<br><br>
 		<a href="..\\index.html">Homepage</a>
@@ -159,12 +159,12 @@ var systemComponents = {
             <tr>
                 <td><button class="opt" onclick="save()">Save</button></td>
                 <td><button class="opt" onclick="toggleOpt('autosave')">Autosave: {{ options.autosave?"ON":"OFF" }}</button></td>
-                <td><button class="opt" style="color: red;" onclick="hardReset()">HARD RESET</button></td>
+                <td><button class="opt" style="color: red;" onclick="hardReset()">WIPE!!!</button></td>
 				<td><button class="opt" onclick="player.points = new Decimal(0)">Soft Reset</button></td>
             </tr>
             <tr>
                 <td><button class="opt" onclick="exportSave()">Export to clipboard</button></td>
-                <td><button class="opt" onclick="importSave()">Import</button></td>
+                <td><button class="opt" onclick="importSave()">Import from prompt</button></td>
                 <td><button class="opt" onclick="toggleOpt('offlineProd')">Offline Prod: {{ options.offlineProd?"ON":"OFF" }}</button></td>
 				<td><button class="opt" onclick="toggleOpt('maxTickLen')"> Max Tick Length: {{ options.maxTickLen }}</button></td>
             </tr>
