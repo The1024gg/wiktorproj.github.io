@@ -166,13 +166,13 @@ function altStandardFormat(decimal) {
     first = ["", "k", "M", "B"]
     symbols = [
         [
-            "", "U", "D", "T", "q", "Q", "s", "S", "O", "N"
+            "", "U", "D", "T", "Qa", "Qt", "Sx", "Sp", "Oc", "No"
         ],
         [
-            "", "Dc", "Vg", "Tg", "qg", "Qg", "sg", "Sg", "Og", "Ng"
+            "", "Dc", "Vg", "Tg", "Qd", "Qi", "Se", "St", "Og", "Nn"
         ],
         [
-            "", "C", "Du", "Tc", "qc", "Qc", "sc", "Sc", "Oc", "Nc"
+            "", "Ce", "Dn", "Tc", "Qe", "Qu", "Sc", "Si", "Oe", "Ne"
         ],
     ]
     decimal = new Decimal(decimal)
