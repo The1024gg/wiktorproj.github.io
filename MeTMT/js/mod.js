@@ -8,7 +8,7 @@ let modInfo = {
 	discordName: "",
 	discordLink: "",
 	initialStartPoints: new Decimal (0), // Used for hard resets and new players
-	offlineLimit: 3,  // In hours
+	offlineLimit: 10,  // In hours
 }
 
 // Set your version in num and name
@@ -17,11 +17,11 @@ let VERSION = {
 	name: "It's not a line anymore",
 }
 
-let changelog = `galaxy has a changelog you don't need this one!`
+let changelog = `main: galaxy has a changelog you don't need this one! / tw.2s4.me for another mod!`
 
 let winText = `Wow! You won! But there will be more <i>soon...</i>`
 
-let additionCap = 25
+let additionCap = 26
 
 let og = new Decimal(0)
 
@@ -88,7 +88,7 @@ function addedPlayerData() { return {
 // Display extra things at the top of the page
 var displayThings = [
 	function() {return 'You have ' + format(player['+'].points) + '/' + format(additionCap) + ' additions'},
-	"Endgame: 10,000 multiplier",
+	"Endgame: 1,000,000,000,000 multiplier",
 	function() {
 		if (player.points.lte(100)) {
 			return "If 1 point is a centimeter, you'd have " + format(player.points) + "cm"
@@ -127,12 +127,30 @@ var displayThings = [
 			return "If 1 point is a centimeter, you'd have " + format(player.points.div(3.08567758e25)) + " gigaparsecs"
 		}
 		return "If you write 1 digit/s, you'd have to write for " + formatTime(player.points.log10().floor())
+	},
+	function() {
+		if (player.p.unlocked) {
+			return "You have 5 layers left to unlock!"
+		}
+		if (player.r.unlocked) {
+			return "You have 4 layers left to unlock!"
+		}
+		if (player.m.unlocked) {
+			return "You have 3 layers left to unlock!!!"
+		}
+		if (player.u.unlocked) {
+			return "You have 2 layers left to unlock!!!!!!"
+		}
+		if (player.i.unlocked) {
+			return "You have 1 layer left to unlock!?!?!?!?"
+		}
+		return "Reach 1,000,000,000,000 multiplier to endgame."
 	}
 ]
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.x.points.gte(10000)
+	return player.x.points.gte(1e12)
 }
 
 // Less important things beyond this point!
