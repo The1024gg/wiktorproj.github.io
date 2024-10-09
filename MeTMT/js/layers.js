@@ -435,6 +435,7 @@ addLayer("p", {
         if (hasUpgrade('r', 14)) mult = mult.times(upgradeEffect('r', 14))
         if (hasUpgrade('r', 17)) mult = mult.pow(1.05)
         if (hasUpgrade('i', 12)) mult = mult.times(10)
+	if (hasUpgrade('x', 15)) mult = mult.times(5)
         return mult
     },
     automate() {
@@ -577,6 +578,7 @@ addLayer("r", {
         if (hasUpgrade('m',11)) mult = mult.times(3)
         if (hasUpgrade('m',17)) mult = mult.times(20)
         if (hasUpgrade('i', 12)) mult = mult.times(5)
+	if (hasUpgrade('x', 16)) mult = mult.times(5)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
