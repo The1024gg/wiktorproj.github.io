@@ -129,7 +129,7 @@ addLayer("+", {
         if (player['+'].points.gte(20)) mult = mult.times(5e120)
         if (player['+'].points.gte(22)) mult = mult.times(5e50)
         if (player['+'].points.gte(24)) mult = mult.times(5e25)
-        if (overginded) mult = new Decimal("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee1000000")
+        if (overginded) mult = new Decimal("10^^1e306")
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
