@@ -75,7 +75,11 @@ addLayer("+", {
                 ["display-text",
                     function() { if (player['+'].points.gte(25)) {return `- Unlock <span style=\"color: rgb(255, 0, 0); text-shadow: rgb(255, 0, 0) 0px 0px 10px;\">multiplier</span>`} },],
 		["display-text",
-                    function() { if (player['+'].points.gte(26)) {return `- Unlock 3 upgrades of <span style=\"color: rgb(255, 0, 0); text-shadow: rgb(255, 0, 0) 0px 0px 10px;\">multiplier</span>`} },],
+                    function() { if (player['+'].points.gte(26)) {return "- +3 Upgrades for <span style=\"color: rgb(255, 0, 0); text-shadow: rgb(255, 0, 0) 0px 0px 10px;\">multiplier</span> layer"} },],
+                ["display-text",
+		    function() { if (player['+'].points.gte(27)) {return "- +2 Upgrades for <span style=\"color: rgb(255, 0, 0); text-shadow: rgb(255, 0, 0) 0px 0px 10px;\">multiplier</span> layer"} },],
+		["display-text",
+		    function() { if (player['+'].points.gte(27)) {return "- +2 Upgrades for <span style=\"color: rgb(255, 0, 0); text-shadow: rgb(255, 0, 0) 0px 0px 10px;\">multiplier</span> challenges, x777 <span style=\"color: rgb(255, 0, 255); text-shadow: rgb(255, 0, 255) 0px 0px 10px;\">ultra</span> points, x100 "} },],
                 ["display-text",
                     "<br><br>Please like this game the colors took so long ;-;<br><br>"
                 ],
