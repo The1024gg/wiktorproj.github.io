@@ -688,6 +688,7 @@ addLayer("m", {
         mult = new Decimal(1)
         if (hasUpgrade('m', 16)) mult = mult.div(15)
         if (hasUpgrade('i', 12)) mult = mult.times(2)
+	if (hasUpgrade('x', 22)) mult = mult.times(222)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
