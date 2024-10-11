@@ -48,6 +48,7 @@ overginded = false
 function getPointGen() {
 	if(!canGenPoints()) return new Decimal(0)
 	let gain = new Decimal(1)
+	
 	if (player['+'].points.gte(17)) gain = gain.add(player.points.pow(0.025))
 	if (player['+'].points.gte(5)) gain = gain.times(2)
 	if (hasUpgrade('p', 13)) gain = gain.add(1)
@@ -97,7 +98,7 @@ function addedPlayerData() { return {
 // Display extra things at the top of the page
 var displayThings = [
 	function() {return 'You have ' + format(player['+'].points) + '/' + format(additionCap) + ' additions'},
-	"Endgame: 1,000,000,000,000 multiplier",
+	"Endgame: 1e25 multiplier",
 	function() {
 		if (player.points.lte(100)) {
 			return "If 1 point is a centimeter, you'd have " + format(player.points) + "cm"
@@ -138,22 +139,22 @@ var displayThings = [
 		return "If you write 1 digit/s, you'd have to write for " + formatTime(player.points.log10().floor())
 	},
 	function() {
-		if (player['+'].points.lte(1)) {
+		if (player['+'].points.lte(0)) {
 			return "Welcome to MetaTree! Collab with wiktorproj"
 		}
-		if (player['+'].points.lte(5)) {
+		if (player['+'].points.lte(4)) {
 			return "You have 5 layers left to unlock"
 		}
-		if (player['+'].points.lte(8)) {
+		if (player['+'].points.lte(7)) {
 			return "You have 4 layers left to unlock!"
 		}
-		if (player['+'].points.lte(11)) {
+		if (player['+'].points.lte(10)) {
 			return "You have 3 layers left to unlock!!!"
 		}
-		if (player['+'].points.lte(19)) {
+		if (player['+'].points.lte(18)) {
 			return "You have 2 layers left to unlock!!!!!!"
 		}
-		if (player['+'].points.lte(25)) {
+		if (player['+'].points.lte(24)) {
 			return "You have 1 layer left to unlock!?!?!?!?"
 		}
 		return "Reach 1e25 multiplier to endgame."
