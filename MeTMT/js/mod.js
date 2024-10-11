@@ -78,6 +78,15 @@ function getPointGen() {
 	if (player['i'].omega.gte(1)) gain = gain.times(player['i'].omega.pow(0.05))
 	if (hasUpgrade('x', 11)) gain = gain.times(5)
 	if (hasUpgrade('x', 12)) gain = gain.times(10)
+	if (hasUpgrade('x', 17)) gain = gain.pow(1.01)
+	if (!inChallenge('i', 11)){
+		if (hasUpgrade('i', 17)) gain = gain.times(69.420)
+		if (hasUpgrade('i', 11)) gain = gain.times(0.5)
+	}
+	if (!inChallenge('i', 12)){
+		if (hasUpgrade('i', 17)) gain = gain.times(6.9420)
+		if (hasUpgrade('i', 11)) gain = gain.times(0.05)
+	}
 	return gain
 }
 
