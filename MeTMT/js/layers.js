@@ -944,6 +944,20 @@ addLayer("i", {
             fullDisplay() {return `<h3>Require</h3><br>x3 omega gain<br><br>Req: ${format(new Decimal(400))} omega` },
         },
     },
+    challenges: {
+	    11: {
+		    name: "1,000 less more",
+		    challengeDescription: "/1,000 point gain.",
+		    goal: new Decimal("ee100"),
+		    unlocked() { return player['+'].points.gte(28)},
+	    },
+	    12: {
+		    name: "10,000 less more",
+		    challengeDescription: "/10,000 point gain.",
+		    goal: new Decimal("ee100"),
+		    unlocked() { return player['+'].points.gte(28)},
+	    },
+    },
     update(diff) {
         let gain = new Decimal(0)
         if (player['+'].points.gte(22)) gain = new Decimal(1)
