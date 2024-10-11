@@ -79,7 +79,7 @@ addLayer("+", {
                 ["display-text",
 		    function() { if (player['+'].points.gte(27)) {return "- +2 Upgrades for <span style=\"color: rgb(255, 0, 0); text-shadow: rgb(255, 0, 0) 0px 0px 10px;\">multiplier</span> layer"} },],
 		["display-text",
-		    function() { if (player['+'].points.gte(28)) {return "- +2 Upgrades for <span style=\"color: rgb(255, 0, 0); text-shadow: rgb(255, 0, 0) 0px 0px 10px;\">multiplier</span>, Unlock Challenges, x777 <span style=\"color: rgb(255, 0, 255); text-shadow: rgb(255, 0, 255) 0px 0px 10px;\">ultra</span> points, x100 omega and infinity"} },],
+		    function() { if (player['+'].points.gte(28)) {return "- +2 Upgrades for <span style=\"color: rgb(255, 0, 0); text-shadow: rgb(255, 0, 0) 0px 0px 10px;\">multiplier</span>, Unlock Challenges, x777 <span style=\"color: rgb(255, 0, 255); text-shadow: rgb(255, 0, 255) 0px 0px 10px;\">ultra</span> points, x100 <span style="color: hsl(${(player.timePlayed * 15) % 360}, 100%, 50%); text-shadow: hsl(${(player.timePlayed * 15) % 360}, 100%, 50%) 0px 0px 10px;">omega</span>, and unlock <span style="color: hsl(${(player.timePlayed * 15) % 360}, 100%, 50%); text-shadow: hsl(${(player.timePlayed * 15) % 360}, 100%, 50%) 0px 0px 10px;">omega</span> and <span style=\"color: rgb(119, 119, 119); text-shadow: rgb(119, 119, 119) 0px 0px 10px;\">infinity</span>"} },],
                 ["display-text",
                     "<br><br>Please like this game the colors took so long ;-;<br><br>"
                 ],
@@ -783,6 +783,7 @@ addLayer("u", {
         mult = new Decimal(1)
         if (hasUpgrade('i', 13)) mult = mult.times(2)
         if (hasUpgrade('i', 15)) mult = mult.times(2)
+	if (hasUpgrade('x', 23)) gain = gain.times(upgradeEffect('x', 23))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -959,6 +960,7 @@ addLayer("i", {
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
         if (hasUpgrade('i', 15)) mult = mult.times(0.5)
+	if (player['+'].points.gte(28)) mult = mult.times(100)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -1074,10 +1076,10 @@ addLayer("x", {
 	    description: "Boost ultra points by multiplier.",
 	    cost: new Decimal(1e24),
 	    effect() {
-                return player.x.points.add(1).pow(0.1)
+                return player.x.points.add(1).pow(0.16)
             },
             effectDisplay() {return 'x' + format(upgradeEffect(this.layer, this.id))},
-	    tooltip: "(mult+1)<sup>0.1</sup>",
+	    tooltip: "(mult+1)<sup>0.16</sup>",
 	    unlocked() {return player['+'].points.gte(28)}
 	},
     },
@@ -1097,6 +1099,8 @@ addLayer("x", {
 	if (player['+'].points.gte(26)) gain = gain.add(99)
         if (hasUpgrade('x', 15)) gain = gain.times(2)
         if (hasUpgrade('x', 16)) gain = gain.times(10)
+	if (hasUpgrade('x', 17)) gain = gain.times(1e12)
+	if (hasUpgrade('x', 21)) gain = gain.times(1000)
         if (hasUpgrade('x', 14)) gain = gain.times(upgradeEffect('x', 14))
         mg = gain
         player['x'].points = player['x'].points.add(gain.times(diff))
