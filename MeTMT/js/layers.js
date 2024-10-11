@@ -79,7 +79,7 @@ addLayer("+", {
                 ["display-text",
 		    function() { if (player['+'].points.gte(27)) {return "- +2 Upgrades for <span style=\"color: rgb(255, 0, 0); text-shadow: rgb(255, 0, 0) 0px 0px 10px;\">multiplier</span> layer"} },],
 		["display-text",
-		    function() { if (player['+'].points.gte(27)) {return "- +2 Upgrades for <span style=\"color: rgb(255, 0, 0); text-shadow: rgb(255, 0, 0) 0px 0px 10px;\">multiplier</span> challenges, x777 <span style=\"color: rgb(255, 0, 255); text-shadow: rgb(255, 0, 255) 0px 0px 10px;\">ultra</span> points, x100 "} },],
+		    function() { if (player['+'].points.gte(28)) {return "- +2 Upgrades for <span style=\"color: rgb(255, 0, 0); text-shadow: rgb(255, 0, 0) 0px 0px 10px;\">multiplier</span>, Unlock Challenges, x777 <span style=\"color: rgb(255, 0, 255); text-shadow: rgb(255, 0, 255) 0px 0px 10px;\">ultra</span> points, x100 omega and infinity"} },],
                 ["display-text",
                     "<br><br>Please like this game the colors took so long ;-;<br><br>"
                 ],
@@ -126,6 +126,7 @@ addLayer("+", {
         if (hasUpgrade('p', 22)) mult = mult.div(1.5)
         if (hasUpgrade('r', 21)) mult = mult.div(5)
         if (hasUpgrade('m', 13)) mult = mult.div(100)
+	if (hasUpgrade('x', 21)) mult = mult.div(1e40)
         if (player['+'].points.gte(10)) mult = mult.times(5e20)
         if (player['+'].points.gte(14)) mult = mult.times(5e10)
         if (player['+'].points.gte(15)) mult = mult.times(5e30)
@@ -135,6 +136,7 @@ addLayer("+", {
         if (player['+'].points.gte(20)) mult = mult.times(5e120)
         if (player['+'].points.gte(22)) mult = mult.times(5e50)
         if (player['+'].points.gte(24)) mult = mult.times(5e25)
+	if (player['+'].points.gte(27)) mult = mult.times(1e145)
         if (overginded) mult = new Decimal("10^^1e306")
         return mult
     },
@@ -296,6 +298,21 @@ addLayer("a", {
 	    name: "Synergism",
 	    tooltip: "Reach 1,000,000,000 multiplier.",
 	    done() {return player['x'].points.gte(1e9)}
+	},
+	41: {
+	    name: "Galaxy",
+	    tooltip: "Reach 1e12 multiplier.",
+	    done() {return player['x'].points.gte(1e12)}
+	},
+	42: {
+	    name: "10 QUINTILLION",
+	    tooltip: "Reach 1e19 multiplier.",
+	    done() {return player['x'].points.gte(1e19)}
+	},
+	43: {
+	    name: "Not-so challenging",
+	    tooltip: "Unlock Challenges.",
+	    done() {return player['+'].points.gte(28)}
 	},
         1001: {
             name: "Infinity of infinities",
@@ -829,10 +846,19 @@ addLayer("i", {
                 ["display-text", function() {return `<span>You have </span><h2 style="color: hsl(${(player.timePlayed * 15) % 360}, 100%, 50%); text-shadow: hsl(${(player.timePlayed * 15) % 360}, 100%, 50%) 0px 0px 10px;">${format(player['i'].omega)}</h2> omega</span>` }],
                 ["display-text", function() {return `<span>You are gaining ${format(og)} omega per second</span>` }],
                 ["display-text", function() {return `<span>You need 22 <span style=\"color: rgb(95, 111, 127); text-shadow: rgb(95, 111, 127) 0px 0px 10px;\">additions</span> to gain omega</span>` }],
-                ["display-text", function() {return `<span>Omega gain is softcapped after 5000 omega; Currently x${format(omegaSC)} omega gain` }],
+                ["display-text", function() {return `<span>Omega gain is softcapped after 5,000 omega; Currently x${format(omegaSC)} omega gain` }],
                 ["display-text", function() {return `<span>Omega is boosting point gain by x${format(player['i'].omega.pow(0.05))}</span>` }]
             ],
             unlocked: function() {return player['+'].points.gte(22)}
+        },
+	"Challenges": {
+            content: [
+                "main-display",
+                "prestige-button",
+                "resource-display",
+                "blank",
+                "challenges"
+            ],
         },
     },
     upgrades: {
@@ -923,7 +949,8 @@ addLayer("i", {
         if (hasUpgrade('i', 1002)) gain = gain.times(3)
         if (hasUpgrade('i', 1003)) gain = gain.add(4)
         if (hasUpgrade('i', 1004)) gain = gain.times(3)
-        if (player['+'].points.gte(23)) gain = gain.times(2)
+	if (player['+'].points.gte(23)) gain = gain.times(2)
+        if (player['+'].points.gte(28)) gain = gain.times(100)
         omegaSC = softcap(player['i'].omega, new Decimal(5000), 0.001).max(5000).minus(4999).pow(-1)
         gain = gain.times(omegaSC)
         og = gain
@@ -1017,6 +1044,42 @@ addLayer("x", {
             cost: new Decimal(1e6),
             unlocked() {return player['+'].points.gte(26)}
         },
+	17: {
+	    title: "Galaxy",
+	    description: "x1,000,000,000,000 multiplier gain, ^1.01 point gain",
+	    cost: new Decimal(1e8),
+	    unlocked() {return player['+'].points.gte(27)}
+	},
+	21: {
+	    title: "Neutron Star",
+	    description: "x1,000 multiplier gain, /1e40 addition req.",
+            style: function(){
+                if (hasUpgrade(this.layer, this.id)) {
+                    return {'background': 'linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,253,0,1) 14%, rgba(0,255,25,1) 28%, rgba(0,244,237,1) 47%, rgba(0,1,242,1) 61%, rgba(235,0,246,1) 79%, rgba(255,0,0,1) 100%)'}
+                } else {
+                    return
+                }
+            },
+	    cost: new Decimal(3.14e16),
+	    unlocked() {return player['+'].points.gte(27)}
+	},
+	22: {
+	    title: "Constellation",
+	    description: "x222 mega gain",
+	    cost: new Decimal(1e19),
+	    unlocked() {return player['+'].points.gte(28)}
+	},
+	23: {
+	    title: "Star",
+	    description: "Boost ultra points by multiplier.",
+	    cost: new Decimal(1e24),
+	    effect() {
+                return player.x.points.add(1).pow(0.1)
+            },
+            effectDisplay() {return 'x' + format(upgradeEffect(this.layer, this.id))},
+	    tooltip: "(mult+1)<sup>0.1</sup>",
+	    unlocked() {return player['+'].points.gte(28)}
+	},
     },
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
