@@ -1,7 +1,7 @@
 let modInfo = {
 	name: "MetaTree",
 	id: "metree", // what is the point of this
-	author: "unicodes/wk",
+	author: "unicodes/wk, The1024gg",
 	pointsName: "points",
 	modFiles: ["layers.js", "tree.js"],
 
@@ -13,15 +13,15 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.6",
-	name: "It's not a line anymore",
+	num: "0.6.1",
+	name: "Challenging",
 }
 
 let changelog = `main: galaxy has a changelog you don't need this one! / tw.2s4.me for another mod!`
 
 let winText = `Wow! You won! But there will be more <i>soon...</i>`
 
-let additionCap = 26
+let additionCap = 28
 
 let og = new Decimal(0)
 
@@ -129,28 +129,31 @@ var displayThings = [
 		return "If you write 1 digit/s, you'd have to write for " + formatTime(player.points.log10().floor())
 	},
 	function() {
-		if (player.p.unlocked) {
-			return "You have 5 layers left to unlock!"
+		if (player['+'].points.lte(1)) {
+			return "Welcome to MetaTree! Collab with wiktorproj"
 		}
-		if (player.r.unlocked) {
+		if (player['+'].points.lte(5)) {
+			return "You have 5 layers left to unlock"
+		}
+		if (player['+'].points.lte(8)) {
 			return "You have 4 layers left to unlock!"
 		}
-		if (player.m.unlocked) {
+		if (player['+'].points.lte(11)) {
 			return "You have 3 layers left to unlock!!!"
 		}
-		if (player.u.unlocked) {
+		if (player['+'].points.lte(19)) {
 			return "You have 2 layers left to unlock!!!!!!"
 		}
-		if (player.i.unlocked) {
+		if (player['+'].points.lte(25)) {
 			return "You have 1 layer left to unlock!?!?!?!?"
 		}
-		return "Reach 1,000,000,000,000 multiplier to endgame."
+		return "Reach 1e25 multiplier to endgame."
 	}
 ]
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.x.points.gte(1e12)
+	return player.x.points.gte(1e25)
 }
 
 // Less important things beyond this point!
