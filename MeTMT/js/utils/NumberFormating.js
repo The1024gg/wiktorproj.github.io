@@ -150,6 +150,10 @@ function standardFormat(decimal) {
     if (first[e] != undefined) { prefix = first[e] } else {
         decimal = decimal.div(1000)
         e = decimal.log10().div(3).floor().clampMin(0)
+        prefix += symbols[0][e.div(10000000).floor().mod(10)]
+        prefix += symbols[1][e.div(100000000).floor().mod(10)]
+        prefix += symbols[2][e.div(1000000000).floor().mod(10)]
+        prefix += e.div(1000000).floor().mod(10).neq(0) ? "Mc" : ""
         prefix += symbols[0][e.div(10000).floor().mod(10)]
         prefix += symbols[1][e.div(100000).floor().mod(10)]
         prefix += symbols[2][e.div(1000000).floor().mod(10)]
@@ -182,6 +186,10 @@ function altStandardFormat(decimal) {
     if (first[e] != undefined) { prefix = first[e] } else {
         decimal = decimal.div(1000)
         e = decimal.log10().div(3).floor().clampMin(0)
+        prefix += symbols[0][e.div(10000000).floor().mod(10)]
+        prefix += symbols[1][e.div(100000000).floor().mod(10)]
+        prefix += symbols[2][e.div(1000000000).floor().mod(10)]
+        prefix += e.div(1000000).floor().mod(10).neq(0) ? "Mc" : ""
         prefix += symbols[0][e.div(10000).floor().mod(10)]
         prefix += symbols[1][e.div(100000).floor().mod(10)]
         prefix += symbols[2][e.div(1000000).floor().mod(10)]
